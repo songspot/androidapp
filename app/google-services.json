@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "734231581612",
+    "firebase_url": "https://songspot-a9346.firebaseio.com",
+    "project_id": "songspot-a9346",
+    "storage_bucket": "songspot-a9346.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734231581612:android:a9fc74a67ceddc11",
+        "android_client_info": {
+          "package_name": "edu.us.ischool.info448.songspot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734231581612-0u2fejdsjtao7pk51f8m124ntphf2lq7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.us.ischool.info448.songspot",
+            "certificate_hash": "6c2cef6838e40e9e1a72400e0b16d170d02c47d5"
+          }
+        },
+        {
+          "client_id": "734231581612-kr364o5p2rth3pvphrfqfnojj3qqi1e5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg7l2eoT-pbGZhW5T6G0rEOgHkC-WnUiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734231581612-kr364o5p2rth3pvphrfqfnojj3qqi1e5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
