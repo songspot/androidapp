@@ -1,7 +1,9 @@
 package edu.us.ischool.info448.songspot.activites
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
@@ -11,7 +13,15 @@ import edu.us.ischool.info448.songspot.R
 
 class MainActivity : AppCompatActivity() {
 
-    ///* UNCOMMENT THIS AND THE BOTTOM TO EXECUTE THIS CODE
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val intent = Intent(this, LoginPage::class.java)
+        startActivity(intent)
+    }
+
+    /* UNCOMMENT THIS AND THE BOTTOM TO EXECUTE THIS CODE
     /**
      *  SAMPLE CODE BELOW FOR OPENING APP THEN HARDCODED PLAYLIST WILL START PLAYING
      */
@@ -72,6 +82,6 @@ class MainActivity : AppCompatActivity() {
             SpotifyAppRemote.disconnect(it)
         }
     }
-    //*/
+    */
 }
  
