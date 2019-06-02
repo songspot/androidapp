@@ -4,9 +4,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activites.GenrePickerActivity">
+        android:background="#212121"
+        tools:context=".activities.GenrePickerActivity">
 
-    <!-- A RecyclerView with some commonly used attributes -->
     <android.support.v7.widget.RecyclerView
             android:id="@+id/genre_recycler_view"
             android:scrollbars="vertical"

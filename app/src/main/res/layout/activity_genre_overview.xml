@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
-
-</android.support.constraint.ConstraintLayout>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:background="#212121"
+        tools:context=".activities.GenreOverviewActivity">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+        <app:android.support.v7.widget.CardView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="4dp">
+            <ImageView
+                    android:id="@+id/genre_album_art"
+                    android:layout_width="256dp"
+                    android:layout_height="256dp"/>
+        </app:android.support.v7.widget.CardView>
+        <TextView
+                android:id="@+id/genre_overview_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_horizontal"
+                android:textColor="#FAFAFA"
+                android:textSize="42sp"
+                android:text="Genre Name"/>
+        <TextView
+                android:id="@+id/genre_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_horizontal"
+                android:textColor="#FAFAFA"
+                android:textSize="28sp"
+                android:text="A longer description of the genre in words."/>
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <Button
+                    android:id="@+id/genre_overview_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:layout_gravity="center|bottom"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="28dp"
+                    android:paddingRight="28dp"
+                    android:elevation="6dp"
+                    android:textSize="16sp"
+                    android:text="Start"/>
+        </FrameLayout>
+    </LinearLayout>
+    <TextView
+            android:id="@+id/genre_overview_countdown"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="#A5D6A7"
+            android:textSize="256dp"
+            android:text=""/>
+</RelativeLayout>
