@@ -1,10 +1,17 @@
-package edu.us.ischool.info448.songspot.activities
+package edu.us.ischool.info448.songspot.activites
 
 import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import com.spotify.android.appremote.api.ConnectionParams
+import com.spotify.android.appremote.api.Connector
+import com.spotify.android.appremote.api.SpotifyAppRemote
+import com.spotify.protocol.types.Track
+import edu.us.ischool.info448.songspot.R
 
 class MainActivity : AppCompatActivity() {
 
-    /* UNCOMMENT THIS AND THE BOTTOM TO EXECUTE THIS CODE
+    ///* UNCOMMENT THIS AND THE BOTTOM TO EXECUTE THIS CODE
     /**
      *  SAMPLE CODE BELOW FOR OPENING APP THEN HARDCODED PLAYLIST WILL START PLAYING
      */
@@ -48,7 +55,8 @@ class MainActivity : AppCompatActivity() {
         spotifyAppRemote?.let {
             // Play a playlist - playlist URI taken from the spotify app
             //val playlistURI = "spotify:playlist:37i9dQZF1DX2sUQwD7tbmL"
-            val playlistURI = "spotify:user:spotify:playlist:37i9dQZF1DXcBWIGoYBM5M"
+            //val playlistURI = "spotify:user:spotify:playlist:37i9dQZF1DXcBWIGoYBM5M"
+            val playlistURI = "spotify:playlist:37i9dQZF1DXcBWIGoYBM5M"
             it.playerApi.play(playlistURI)
             // Subscribe to PlayerState
             it.playerApi.subscribeToPlayerState().setEventCallback {
@@ -64,6 +72,6 @@ class MainActivity : AppCompatActivity() {
             SpotifyAppRemote.disconnect(it)
         }
     }
-    */
+    //*/
 }
  
