@@ -8,7 +8,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import edu.us.ischool.info448.songspot.R
 
-class LoginPage : AppCompatActivity() {
+class RegisterPage : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
 
@@ -18,31 +18,28 @@ class LoginPage : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().reference
 
-        var loginButton : Button = findViewById(R.id.loginButton)
+        var registerButton : Button = findViewById(R.id.register)
         var username : EditText = findViewById(R.id.username)
+        var display : EditText = findViewById(R.id.displayName)
         var password : EditText = findViewById(R.id.password)
 
-        loginButton.setOnClickListener {
-            loginUser(username.text.toString(), password.text.toString())
+        registerButton.setOnClickListener {
+            createNewUser(username.text.toString(), display.text.toString(), password.text.toString())
         }
 
-
-        createNewUser("bob", "matty", "234")
-        println("NEW USER")
+//        createNewUser("bob", "matty", "234")
+//        println("NEW USER")
     }
 
     // Creates a new account
     private fun createNewUser(username: String, name: String?, password: String) {
-        database.child("users").child(username).setValue(password)
+        //database.child("users").child(username).setValue(password)
         //val screenName = if (name.equals(null)) username else name
         //database.child("users").child(username).setValue(screenName)
+        // check if selected username exists within database
+        // if it doesn't exist in database, create it username/displayname/password combo
+        // if it does, notify user that this username is already in use
+
     }
 
-    //  Logs user into their account after taking in a username and password.
-    // Will check database if username/password combo exists
-    private fun loginUser(username: String, password:String) {
-        // check if user exists
-        // if user exists take them to the application
-        // if they do not, don't do anything
-    }
 }

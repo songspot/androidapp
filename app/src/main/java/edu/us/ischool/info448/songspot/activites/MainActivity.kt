@@ -21,20 +21,16 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    /* UNCOMMENT THIS AND THE BOTTOM TO EXECUTE THIS CODE
-    /**
-     *  SAMPLE CODE BELOW FOR OPENING APP THEN HARDCODED PLAYLIST WILL START PLAYING
-     */
     private val clientId = "33d1e95c57e6460e806a7a9699406d17"
     //private val redirectUri = "http://com.yourdomain.yourapp/callback";
     // redirect: "https://com.spotify.android.spotifysdkkotlindemo/callback"
     private val redirectUri = "http://localhost:8888/callback/"
     private var spotifyAppRemote: SpotifyAppRemote? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_main)
+//    }
 
     override fun onStart() {
         super.onStart()
@@ -82,6 +78,5 @@ class MainActivity : AppCompatActivity() {
             SpotifyAppRemote.disconnect(it)
         }
     }
-    */
+
 }
- 

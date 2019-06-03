@@ -25,7 +25,7 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/password"
-            app:layout_constraintTop_toBottomOf="@+id/username"
+            app:layout_constraintTop_toBottomOf="@+id/displayName"
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp" android:hint="Enter password"
@@ -37,28 +37,27 @@
             android:ems="10"
             android:id="@+id/username" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/TitleLabel"
-            app:layout_constraintBottom_toTopOf="@+id/password" android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/displayName" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:hint="Username"/>
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:hint="Username"
+    />
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/loginButton"
+            android:id="@+id/loginButton" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:text="Login" android:layout_marginTop="8dp"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintBottom_toTopOf="@+id/register"/>
-    <Button
-            android:text="Register here!"
+            android:layout_marginStart="8dp" android:text="Register"/>
+    <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/register"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            app:layout_constraintTop_toBottomOf="@+id/loginButton" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="8dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/displayName"
+            app:layout_constraintTop_toBottomOf="@+id/username"
+            app:layout_constraintBottom_toTopOf="@+id/password" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"/>
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:hint="Display Name"/>
 </android.support.constraint.ConstraintLayout>
