@@ -32,51 +32,51 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_main)
 //    }
 
-    override fun onStart() {
-        super.onStart()
-        val connectionParams = ConnectionParams.Builder(clientId)
-            .setRedirectUri(redirectUri)
-            .showAuthView(true)
-            .build()
-
-        println("LETS CONNECT PLEASE")
-        SpotifyAppRemote.connect(this, connectionParams, object : Connector.ConnectionListener {
-            override fun onConnected(appRemote: SpotifyAppRemote) {
-                spotifyAppRemote = appRemote
-                Log.d("MainActivity", "Connected! Yay!")
-                // Now you can start interacting with App Remote
-                println("CONNECTING")
-                connected()
-                println("CONNECTED")
-            }
-
-            override fun onFailure(throwable: Throwable) {
-                Log.e("MainActivity", throwable.message, throwable)
-                // Something went wrong when attempting to connect! Handle errors here
-            }
-        })
-    }
-
-    private fun connected() {
-        spotifyAppRemote?.let {
-            // Play a playlist - playlist URI taken from the spotify app
-            //val playlistURI = "spotify:playlist:37i9dQZF1DX2sUQwD7tbmL"
-            //val playlistURI = "spotify:user:spotify:playlist:37i9dQZF1DXcBWIGoYBM5M"
-            val playlistURI = "spotify:playlist:37i9dQZF1DXcBWIGoYBM5M"
-            it.playerApi.play(playlistURI)
-            // Subscribe to PlayerState
-            it.playerApi.subscribeToPlayerState().setEventCallback {
-                val track: Track = it.track
-                Log.d("MainActivity", track.name + " by " + track.artist.name)
-            }
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        spotifyAppRemote?.let {
-            SpotifyAppRemote.disconnect(it)
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        val connectionParams = ConnectionParams.Builder(clientId)
+//            .setRedirectUri(redirectUri)
+//            .showAuthView(true)
+//            .build()
+//
+//        println("LETS CONNECT PLEASE")
+//        SpotifyAppRemote.connect(this, connectionParams, object : Connector.ConnectionListener {
+//            override fun onConnected(appRemote: SpotifyAppRemote) {
+//                spotifyAppRemote = appRemote
+//                Log.d("MainActivity", "Connected! Yay!")
+//                // Now you can start interacting with App Remote
+//                println("CONNECTING")
+//                connected()
+//                println("CONNECTED")
+//            }
+//
+//            override fun onFailure(throwable: Throwable) {
+//                Log.e("MainActivity", throwable.message, throwable)
+//                // Something went wrong when attempting to connect! Handle errors here
+//            }
+//        })
+//    }
+//
+//    private fun connected() {
+//        spotifyAppRemote?.let {
+//            // Play a playlist - playlist URI taken from the spotify app
+//            //val playlistURI = "spotify:playlist:37i9dQZF1DX2sUQwD7tbmL"
+//            //val playlistURI = "spotify:user:spotify:playlist:37i9dQZF1DXcBWIGoYBM5M"
+//            val playlistURI = "spotify:playlist:37i9dQZF1DXcBWIGoYBM5M"
+//            it.playerApi.play(playlistURI)
+//            // Subscribe to PlayerState
+//            it.playerApi.subscribeToPlayerState().setEventCallback {
+//                val track: Track = it.track
+//                Log.d("MainActivity", track.name + " by " + track.artist.name)
+//            }
+//        }
+//    }
+//
+//    override fun onStop() {
+//        super.onStop()
+//        spotifyAppRemote?.let {
+//            SpotifyAppRemote.disconnect(it)
+//        }
+//    }
 
 }

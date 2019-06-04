@@ -27,16 +27,16 @@ class LoginPage : AppCompatActivity() {
         }
 
 
-        createNewUser("bob", "matty", "234")
+//        createNewUser("bob", "matty", "234")
         println("NEW USER")
     }
 
     // Creates a new account
-    private fun createNewUser(username: String, name: String?, password: String) {
-        database.child("users").child(username).setValue(password)
-        //val screenName = if (name.equals(null)) username else name
-        //database.child("users").child(username).setValue(screenName)
-    }
+//    private fun createNewUser(username: String, name: String?, password: String) {
+//        database.child("users").child(username).setValue(password)
+//        //val screenName = if (name.equals(null)) username else name
+//        //database.child("users").child(username).setValue(screenName)
+//    }
 
     //  Logs user into their account after taking in a username and password.
     // Will check database if username/password combo exists
