@@ -5,10 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import edu.us.ischool.info448.songspot.R
 
 class LoginPage : AppCompatActivity() {
@@ -42,7 +39,15 @@ class LoginPage : AppCompatActivity() {
         // check if user exists
         // if user exists take them to the application
         // if they do not, don't do anything
-        println("YES: " + database.child("users").child(username).parent)
-
+        database.child("users").addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.child(username).exists()) {//&&
+                    //dataSnapshot.child(username).child("password").getValue(String)) {
+                    println("YEUPP")
+                }
+            }
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        })
     }
 }
