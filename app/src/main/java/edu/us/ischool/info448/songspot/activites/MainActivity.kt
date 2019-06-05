@@ -1,4 +1,4 @@
-package edu.us.ischool.info448.songspot.activites
+package edu.us.ischool.info448.songspot.activities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
