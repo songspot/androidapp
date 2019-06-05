@@ -41,9 +41,9 @@ class LoginPage : AppCompatActivity() {
         // if they do not, don't do anything
         database.child("users").addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.child(username).exists()) {//&&
-                    //dataSnapshot.child(username).child("password").getValue(String)) {
-                    println("YEUPP")
+                if (dataSnapshot.child(username).exists() &&
+                    dataSnapshot.child(username).child("password").getValue(true) == password) {
+                    println("USER LOGIN AUTHENICATED")
                 }
             }
             override fun onCancelled(p0: DatabaseError) {
