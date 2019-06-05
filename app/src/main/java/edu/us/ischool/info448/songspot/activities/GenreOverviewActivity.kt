@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import com.bumptech.glide.Glide
 import edu.us.ischool.info448.songspot.R
+import android.widget.*
+import android.view.animation.AnimationUtils
 
+/** Shows an overview of a selected genre, including album art, a title, description, and button to start the quiz activity. **/
 class GenreOverviewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +18,7 @@ class GenreOverviewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_genre_overview)
 
         val startButton = findViewById<Button>(R.id.genre_overview_button)
-        val countdownView = findViewById<TextView>(R.id.genre_overview_countdown)
+        val countdownView = findViewById<TextSwitcher>(R.id.genre_overview_countdown)
         val genreLabel = findViewById<TextView>(R.id.genre_overview_label)
         val genreAlbumArt = findViewById<ImageView>(R.id.genre_album_art)
         val genreName = intent.getStringExtra("GENRE_NAME")
@@ -27,11 +27,17 @@ class GenreOverviewActivity : AppCompatActivity() {
         setGenreImage(genreName, genreAlbumArt)
         setGenreDescription(genreName)
 
+        // Set countdown number animations.
+        val fadeIn = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
+        val fadeOut = AnimationUtils.loadAnimation(this, android.R.anim.fade_out)
+        countdownView.inAnimation = fadeIn
+        countdownView.outAnimation = fadeOut
+
         // Show countdown then begin quiz activity.
         startButton.setOnClickListener {
             val timer = object: CountDownTimer(3000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
-                    countdownView.text = (millisUntilFinished / 1000 + 1).toString()
+                    countdownView.setText((millisUntilFinished / 1000 + 1).toString())
                 }
 
                 override fun onFinish() {
@@ -42,6 +48,7 @@ class GenreOverviewActivity : AppCompatActivity() {
         }
     }
 
+    /** Load and set the album art. **/
     private fun setGenreImage(genre: String, imgView: ImageView) {
         val img = when(genre) {
             "Pop" -> "maroon5.png"
@@ -58,8 +65,6 @@ class GenreOverviewActivity : AppCompatActivity() {
             .with(applicationContext)
             .load(imageUri)
             .centerCrop()
-            .placeholder(R.drawable.abc_spinner_mtrl_am_alpha)
-            .error(R.drawable.abc_ic_ab_back_material)
             .into(imgView)
     }
 

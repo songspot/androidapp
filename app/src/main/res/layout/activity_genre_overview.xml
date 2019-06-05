@@ -17,9 +17,9 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="48dp"
                 app:cardCornerRadius="6dp"
-                app:cardElevation="4dp">
+                app:cardElevation="8dp">
             <ImageView
                     android:id="@+id/genre_album_art"
                     android:layout_width="256dp"
@@ -29,7 +29,7 @@
                 android:id="@+id/genre_overview_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="18dp"
                 android:gravity="center_horizontal"
                 android:textColor="#FAFAFA"
                 android:textSize="42sp"
@@ -61,12 +61,23 @@
                     android:text="Start"/>
         </FrameLayout>
     </LinearLayout>
-    <TextView
+    <TextSwitcher
             android:id="@+id/genre_overview_countdown"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical|center_horizontal"
-            android:textColor="#A5D6A7"
-            android:textSize="256dp"
-            android:text=""/>
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:gravity="center_vertical|center_horizontal">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="256dp"
+                android:textColor="#A5D6A7"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="256dp"
+                android:textColor="#A5D6A7"/>
+    </TextSwitcher>
 </RelativeLayout>

@@ -36,6 +36,7 @@ class GenrePickerAdapter(private val genreList: Array<String>) :
         return GenreViewHolder(itemView)
     }
 
+    // Colors of the cards in the GenrePickerActivity.
     private val cardColors : Array<Int> = arrayOf(
         Color.parseColor("#FFA726"), // Pop
         Color.parseColor("#303F9F"), // Rap
