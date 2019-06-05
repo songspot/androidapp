@@ -41,7 +41,7 @@ dependencies {
     //implementation 'com.spotify.sdk:spotify-auth-release:1.1.0@aar'
     implementation project(':spotify-auth-release-1.1.0')
     implementation 'com.google.firebase:firebase-database:16.0.4'
-//    implementation 'com.google.firebase:firebase-auth:17.0.0'
+    //implementation 'com.google.firebase:firebase-auth:17.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

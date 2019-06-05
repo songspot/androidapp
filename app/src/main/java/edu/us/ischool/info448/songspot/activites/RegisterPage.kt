@@ -12,7 +12,7 @@ import edu.us.ischool.info448.songspot.R
 class RegisterPage : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
-//    private lateinit var auth: FirebaseAuth
+    //private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +29,6 @@ class RegisterPage : AppCompatActivity() {
         registerButton.setOnClickListener {
             createNewUser(username.text.toString(), display.text.toString(), password.text.toString())
         }
-
-        // createNewUser("bob", "matty", "234")
-        // println("NEW USER")
     }
 
     // Creates a new account

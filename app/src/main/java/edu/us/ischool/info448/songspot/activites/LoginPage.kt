@@ -8,6 +8,7 @@ import android.widget.EditText
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import edu.us.ischool.info448.songspot.R
 
 class LoginPage : AppCompatActivity() {
@@ -33,17 +34,7 @@ class LoginPage : AppCompatActivity() {
             val intent = Intent(this, RegisterPage::class.java)
             startActivity(intent)
         }
-
-//        createNewUser("bob", "matty", "234")
-        println("NEW USER")
     }
-
-    // Creates a new account
-//    private fun createNewUser(username: String, name: String?, password: String) {
-//        database.child("users").child(username).setValue(password)
-//        //val screenName = if (name.equals(null)) username else name
-//        //database.child("users").child(username).setValue(screenName)
-//    }
 
     //  Logs user into their account after taking in a username and password.
     // Will check database if username/password combo exists
@@ -51,5 +42,7 @@ class LoginPage : AppCompatActivity() {
         // check if user exists
         // if user exists take them to the application
         // if they do not, don't do anything
+        println("YES: " + database.child("users").child(username).parent)
+
     }
 }
