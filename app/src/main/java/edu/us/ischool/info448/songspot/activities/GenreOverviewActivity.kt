@@ -64,7 +64,6 @@ class GenreOverviewActivity : AppCompatActivity() {
         Glide
             .with(applicationContext)
             .load(imageUri)
-            .centerCrop()
             .into(imgView)
     }
 
