@@ -16,12 +16,12 @@ class RegisterPage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_page)
+        setContentView(R.layout.activity_register_page)
 
         database = FirebaseDatabase.getInstance().reference
-//        auth = FirebaseAuth.getInstance()
+        //auth = FirebaseAuth.getInstance()
 
-        var registerButton : Button = findViewById(R.id.register)
+        var registerButton : Button = findViewById(R.id.loginButton)
         var username : EditText = findViewById(R.id.username)
         var display : EditText = findViewById(R.id.displayName)
         var password : EditText = findViewById(R.id.password)
@@ -43,7 +43,7 @@ class RegisterPage : AppCompatActivity() {
         // if it doesn't exist in database, create it username/displayname/password combo
         // if it does, notify user that this username is already in use
         val thisUser = User(username, name, password)
-        database.child("users").setValue(thisUser)
+        database.child("users").child(username).setValue(thisUser)
     }
 
 }

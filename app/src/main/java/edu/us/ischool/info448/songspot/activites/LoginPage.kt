@@ -1,9 +1,11 @@
 package edu.us.ischool.info448.songspot.activites
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import edu.us.ischool.info448.songspot.R
@@ -21,11 +23,16 @@ class LoginPage : AppCompatActivity() {
         var loginButton : Button = findViewById(R.id.loginButton)
         var username : EditText = findViewById(R.id.username)
         var password : EditText = findViewById(R.id.password)
+        var registerButton : Button = findViewById(R.id.register)
 
         loginButton.setOnClickListener {
             loginUser(username.text.toString(), password.text.toString())
         }
 
+        registerButton.setOnClickListener {
+            val intent = Intent(this, RegisterPage::class.java)
+            startActivity(intent)
+        }
 
 //        createNewUser("bob", "matty", "234")
         println("NEW USER")
