@@ -7,7 +7,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:background="#212121"
-        tools:context=".activities.GenreOverviewActivity">
+        tools:context=".activites.GenreOverviewActivity">
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

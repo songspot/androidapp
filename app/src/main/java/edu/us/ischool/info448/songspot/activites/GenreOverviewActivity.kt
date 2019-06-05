@@ -1,4 +1,4 @@
-package edu.us.ischool.info448.songspot.activities
+package edu.us.ischool.info448.songspot.activites
 
 import android.net.Uri
 import android.os.Bundle
