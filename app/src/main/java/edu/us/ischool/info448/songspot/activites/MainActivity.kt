@@ -1,14 +1,9 @@
-package edu.us.ischool.info448.songspot.activities
+package edu.us.ischool.info448.songspot.activites
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
-import com.spotify.android.appremote.api.ConnectionParams
-import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
-import com.spotify.protocol.types.Track
 import edu.us.ischool.info448.songspot.R
 
 class MainActivity : AppCompatActivity() {
