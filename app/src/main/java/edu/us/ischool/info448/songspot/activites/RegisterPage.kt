@@ -1,5 +1,6 @@
 package edu.us.ischool.info448.songspot.activites
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -41,6 +42,8 @@ class RegisterPage : AppCompatActivity() {
         // if it does, notify user that this username is already in use
         val thisUser = User(username, name, password)
         database.child("users").child(username).setValue(thisUser)
+        val intent = Intent(this, LoginPage::class.java)
+        startActivity(intent)
     }
 
 }
