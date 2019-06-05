@@ -1,17 +1,20 @@
 package edu.us.ischool.info448.songspot.activites
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
 import com.spotify.protocol.types.Track
+import edu.us.ischool.info448.songspot.QuestionActivity
 import edu.us.ischool.info448.songspot.R
 
 class MainActivity : AppCompatActivity() {
 
-    ///* UNCOMMENT THIS AND THE BOTTOM TO EXECUTE THIS CODE
+
     /**
      *  SAMPLE CODE BELOW FOR OPENING APP THEN HARDCODED PLAYLIST WILL START PLAYING
      */
@@ -27,7 +30,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onStart() {
+
         super.onStart()
+        val button = findViewById<Button>(R.id.button)
+        button.setOnClickListener {
+            val buttonIntent = Intent(baseContext, QuestionActivity::class.java)
+            startActivity(buttonIntent)
+        }
+
         val connectionParams = ConnectionParams.Builder(clientId)
             .setRedirectUri(redirectUri)
             .showAuthView(true)
@@ -49,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                 // Something went wrong when attempting to connect! Handle errors here
             }
         })
+
     }
 
     private fun connected() {
@@ -72,6 +83,6 @@ class MainActivity : AppCompatActivity() {
             SpotifyAppRemote.disconnect(it)
         }
     }
-    //*/
+
 }
  
