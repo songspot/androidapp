@@ -23,13 +23,12 @@ android {
 }
 
 repositories {
-    mavenCentral()
-    flatDir {
-        dirs 'libs'
-    }
+    maven { url 'https://jitpack.io' }
+    jcenter()
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -38,8 +37,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.6.1'
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    //implementation 'com.spotify.sdk:spotify-auth-release:1.1.0@aar'
     implementation project(':spotify-auth-release-1.1.0')
+    implementation 'com.github.adamint:spotify-web-api-kotlin:dev-SNAPSHOT'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

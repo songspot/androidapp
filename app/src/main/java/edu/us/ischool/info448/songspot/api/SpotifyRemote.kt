@@ -9,7 +9,6 @@ import com.spotify.protocol.types.Track
 
 class SpotifyRemote {
     private val clientId = "33d1e95c57e6460e806a7a9699406d17"
-
     private val redirectUri = "http://localhost:8888/callback/"
     private var spotifyAppRemote: SpotifyAppRemote? = null
 
