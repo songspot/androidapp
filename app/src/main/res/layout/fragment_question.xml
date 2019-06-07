@@ -55,7 +55,7 @@
             android:id="@+id/timer" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-            app:layout_constraintVertical_bias="0.584"
+            app:layout_constraintVertical_bias="0.577"
             android:text="@string/ready"
             android:layout_marginEnd="28dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="1.0" android:textColor="#81b71a"
