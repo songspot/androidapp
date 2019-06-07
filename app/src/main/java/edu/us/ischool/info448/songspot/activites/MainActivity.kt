@@ -1,5 +1,6 @@
 package edu.us.ischool.info448.songspot.activites
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import edu.us.ischool.info448.songspot.R
@@ -14,11 +15,5 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
-        val app = App.sharedInstance
-
-        app.spotifyRemote.connect {
-            app.spotifyRemote.playSong("")
-        }
     }
 }

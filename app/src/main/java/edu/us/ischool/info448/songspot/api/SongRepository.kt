@@ -1,5 +1,4 @@
 package edu.us.ischool.info448.songspot.api
-import android.content.Context
 import com.adamratzman.spotify.SpotifyAPI
 import com.adamratzman.spotify.spotifyApi
 import edu.us.ischool.info448.songspot.models.Song
@@ -12,14 +11,11 @@ class SongRepository {
         "Piano" to "spotify:playlist:37i9dQZF1DX7K31D69s4M1"
     )
 
-    private var context: Context
     private var api: SpotifyAPI
 
     private lateinit var songs: ArrayList<Song>
 
-    constructor(context: Context) {
-        this.context = context
-
+    constructor() {
         api = spotifyApi {
             credentials {
                 clientId = "33d1e95c57e6460e806a7a9699406d17"
