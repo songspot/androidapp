@@ -16,6 +16,7 @@ class LoginPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_page)
 
+
         database = FirebaseDatabase.getInstance().reference
 
         var loginButton : Button = findViewById(R.id.loginButton)
