@@ -1,4 +1,5 @@
 package edu.us.ischool.info448.songspot.api
+import android.util.Log
 import com.adamratzman.spotify.SpotifyAPI
 import com.adamratzman.spotify.spotifyApi
 import edu.us.ischool.info448.songspot.models.Song
@@ -11,25 +12,19 @@ class SongRepository {
         "Piano" to "spotify:playlist:37i9dQZF1DX7K31D69s4M1"
     )
 
-    private var api: SpotifyAPI
+    private lateinit var accessToken: String
+    private lateinit var api: SpotifyAPI
 
     private lateinit var songs: ArrayList<Song>
 
-    constructor() {
-        api = spotifyApi {
-            credentials {
-                clientId = "33d1e95c57e6460e806a7a9699406d17"
-                clientSecret = "ccfa3f280483413eb9d2fad4abebf1cc"
-            }
-        }.buildCredentialed()
-    }
-
     // Fetches 40 songs from the given playlist to be used for the quiz
-    fun fetchCategorySongs(name: String, completion: () -> Unit) {
+    fun fetchCategorySongs(name: String, completion: (ArrayList<Song>) -> Unit) {
         val uri = playlistNameToUriMap.getValue(name)
 
-        api.playlists.getPlaylistTracks(uri, 40).queue {response ->
-            response.items.map {item ->
+        api.playlists.getPlaylistTracks(uri, 20).queue {response ->
+            Log.d("SONG_SPOT", response.items.toString())
+
+            response.items.forEach {item ->
                 val track = item.track
 
                 val trackName = track.name
@@ -38,9 +33,14 @@ class SongRepository {
                     artist.name
                 }.joinToString(" & ")
 
-                songs.add(Song(trackName, artist, trackUri))
+                val song = Song(trackName, artist, trackUri)
+                Log.d("SONG_SPOT", song.toString())
+
+                songs.add(song)
             }
-            completion()
+
+            Log.d("SONG_SPOT", "Completion called")
+            completion(songs)
         }
     }
 
@@ -59,5 +59,19 @@ class SongRepository {
 
         val resultsArray = arrayOfNulls<Song>(results.size)
         return results.toArray(resultsArray)
+    }
+
+    fun setAccessToken(token: String) {
+        this.accessToken = token
+        api = spotifyApi {
+            credentials {
+                clientId = "33d1e95c57e6460e806a7a9699406d17"
+                clientSecret = "ccfa3f280483413eb9d2fad4abebf1cc"
+            }
+            authentication {
+                tokenString = accessToken
+            }
+
+        }.buildCredentialed()
     }
 }
