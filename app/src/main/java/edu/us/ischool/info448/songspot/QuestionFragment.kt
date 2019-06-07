@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.ContextCompat.getColor
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,24 +20,10 @@ import android.widget.Button
 import android.widget.Toast
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [QuestionFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [QuestionFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
 class QuestionFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var questionNumber: String? = null
-    private var secondsLeft: Int = 10
+    private var questionsCount: Int? = null
+    private var questionNumber: Int? = null
+    private var secondsLeft: Int = 11
     private var readySecondsLeft: Int = 12
     private var listener: OnNextQuestionListener? = null
     private var correctButton: Button? = null
@@ -44,8 +31,10 @@ class QuestionFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            questionNumber = it.getString("QUESTION_NUMBER")
-
+            questionNumber = it.getInt("QUESTION_NUMBER")
+            questionsCount = it.getInt("QUESTIONS_COUNT")
+            Log.d("debugging", questionNumber.toString())
+            Log.d("debugging", questionsCount.toString())
         }
 
     }
@@ -63,20 +52,24 @@ class QuestionFragment : Fragment() {
         val answer3 = view.findViewById<Button>(R.id.answer3)
         val answer4 = view.findViewById<Button>(R.id.answer4)
 
+        // reference to timer display
+        val timerDisplay = view.findViewById<TextView>(R.id.timer)
+        val timer = Timer()
         val timer2 = Timer()
         timer2.schedule(object : TimerTask() {
             override fun run() {
                 // start "Ready Period" Timer
                 activity.runOnUiThread(Runnable {
                     // tasks to be done every 1000 milliseconds
-                    if (readySecondsLeft > 10) {
-                        Toast.makeText(activity, "Ready?", Toast.LENGTH_SHORT).show()
-                    }
-                    else {
-                        Toast.makeText(activity, readySecondsLeft.toString(), Toast.LENGTH_SHORT).show()
+                    if (readySecondsLeft > 9) {
+                        timerDisplay.text = "Ready?"
+                    } else if (readySecondsLeft > 0) {
+                        timerDisplay.text = "Set.."
+                    } else if (readySecondsLeft == 0){
+                        timerDisplay.text = "Go!"
                     }
                     if (readySecondsLeft == 0) {
-                        Toast.makeText(activity, "Start!", Toast.LENGTH_SHORT).show()
+
                         answer1.setEnabled(true)
                         answer2.setEnabled(true)
                         answer3.setEnabled(true)
@@ -86,11 +79,11 @@ class QuestionFragment : Fragment() {
                         timer2.cancel()
 
                         // starts question timer as soon as "Ready Period" is over
-                        val timer = Timer()
+
                         timer.schedule(object : TimerTask() {
                             override fun run() {
                                 activity.runOnUiThread(Runnable {
-                                    val timerDisplay = view.findViewById<TextView>(R.id.timer)
+
                                     // tasks to be done every 1000 milliseconds
                                     secondsLeft--
                                     timerDisplay.text = secondsLeft.toString()
@@ -102,9 +95,7 @@ class QuestionFragment : Fragment() {
                                         activateBlinking(answer3)
                                         activateBlinking(answer4)
                                     }
-
                                 })
-
                             }
                         }, 1000, 1000)
                     }
@@ -115,42 +106,63 @@ class QuestionFragment : Fragment() {
         }, 1000, 1000)
 
 
-
         // sets onclicklisteners for all buttons
         answer1.setOnClickListener {
+            timer.cancel()
             activateBlinking(answer1)
         }
+
+
         answer2.setOnClickListener {
             activateBlinking(answer2)
+            timer.cancel()
         }
         answer3.setOnClickListener {
             activateBlinking(answer3)
+            timer.cancel()
         }
         answer4.setOnClickListener {
             activateBlinking(answer4)
+            timer.cancel()
         }
-
-
 
         return view
     }
 
     // takes in a button, and a boolean representing whether the answer is correct
     // starts a blinking animation that is green if the answer is correct, red if otherwise
+    // also handles transitions between questions
     private fun activateBlinking(button: Button) {
-        if (!button.equals(correctButton)) {
-            button.backgroundTintList = (ContextCompat.getColorStateList(activity, R.color.colorRed));
-        } else {
-            button.backgroundTintList = (ContextCompat.getColorStateList(activity, R.color.colorGreen));
-        }
-        val mAnimation = AlphaAnimation(1f, 0f)
-        mAnimation.duration = 200
-        mAnimation.interpolator = LinearInterpolator()
-        mAnimation.repeatCount = 1
-        mAnimation.repeatMode = Animation.REVERSE
-        button.startAnimation(mAnimation)
-    }
+        var time = 0
+        val timer2 = Timer()
+        timer2.schedule(object : TimerTask() {
+            override fun run() {
+                // start "Ready Period" Timer
+                activity.runOnUiThread(Runnable {
+                    if (time == 0) {
+                        if (!button.equals(correctButton)) {
+                            button.backgroundTintList = (ContextCompat.getColorStateList(activity, R.color.colorRed));
+                        } else {
+                            button.backgroundTintList = (ContextCompat.getColorStateList(activity, R.color.colorGreen));
+                        }
+                        val mAnimation = AlphaAnimation(1f, 0f)
+                        mAnimation.duration = 200
+                        mAnimation.interpolator = LinearInterpolator()
+                        mAnimation.repeatCount = 1
+                        mAnimation.repeatMode = Animation.REVERSE
+                        button.startAnimation(mAnimation)
+                    }
+                    if (time == 3) {
+                        questionNumber = questionNumber!! + 1
+                        listener!!.onNextQuestion(questionNumber!!, questionsCount!!)
+                        timer2.cancel()
+                    }
+                    time++
+                })
+            }
 
+        }, 0, 1000)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -161,47 +173,24 @@ class QuestionFragment : Fragment() {
         }
     }
 
-
     override fun onDetach() {
         super.onDetach()
         listener = null
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
-
-    // interface to be implemented by activity
     interface OnNextQuestionListener {
         // takes in a question index and transitions to the next question fragment if the final question
         // hasn't been reached.
-        fun onNextQuestion(questionNumber:String)
+        fun onNextQuestion(questionNumber:Int, questionsCount: Int)
     }
 
-
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment QuestionFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(questionNumber: String) =
+        fun newInstance(questionNumber: Int, questionsCount: Int) =
             QuestionFragment().apply {
                 arguments = Bundle().apply {
-                    putString("QUESTION_NUMBER", questionNumber)
+                    putInt("QUESTION_NUMBER", questionNumber)
+                    putInt("QUESTIONS_COUNT", questionsCount)
                 }
             }
     }

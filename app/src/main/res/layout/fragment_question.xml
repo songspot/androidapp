@@ -4,7 +4,7 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
-                                             tools:context=".QuestionFragment">
+                                             tools:context=".QuestionFragment" android:background="#E4000000">
     <TableLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content" android:layout_marginTop="8dp"
@@ -48,21 +48,16 @@
         </TableRow>
     </TableLayout>
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="64sp"
+            android:layout_width="355dp"
+            android:layout_height="196dp"
             android:id="@+id/timer" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-            app:layout_constraintVertical_bias="0.195"
-            android:text="@string/_10" app:layout_constraintStart_toEndOf="@+id/time_label"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintHorizontal_bias="0.0"/>
-    <TextView
-            android:text="Time Left:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/time_label" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="284dp" android:layout_marginStart="284dp" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/tableLayout" app:layout_constraintVertical_bias="0.179"/>
+            app:layout_constraintVertical_bias="0.584"
+            android:text="@string/ready"
+            android:layout_marginEnd="28dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="1.0" android:textColor="#81b71a"
+            android:fontFamily="@font/montserrat"/>
 </android.support.constraint.ConstraintLayout>
