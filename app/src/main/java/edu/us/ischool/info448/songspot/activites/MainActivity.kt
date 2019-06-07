@@ -22,6 +22,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+
+        val intent = Intent(this, LoginPage::class.java)
+        startActivity(intent)
+
         val request = AuthenticationRequest.Builder(clientId, AuthenticationResponse.Type.TOKEN, redirectUri)
             .setScopes(arrayOf("user-read-private", "playlist-read", "playlist-read-private", "streaming"))
             .build()
