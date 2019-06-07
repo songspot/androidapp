@@ -3,13 +3,11 @@ package edu.us.ischool.info448.songspot.activites
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import edu.us.ischool.info448.songspot.R
 import edu.us.ischool.info448.songspot.api.App
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationResponse
-import com.spotify.sdk.android.authentication.LoginActivity.REQUEST_CODE
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +38,9 @@ class MainActivity : AppCompatActivity() {
         when (response.type) {
             // Success, response contains accessToken
             AuthenticationResponse.Type.TOKEN -> {
+
+                // TODO: PLACE THESE TWO CALLS IN THEIR PROPER LOCATION
+
                 App.sharedInstance.songRepository.setAccessToken(response.accessToken)
                 App.sharedInstance.songRepository.fetchCategorySongs("Indie") {
                     val song = it[0]

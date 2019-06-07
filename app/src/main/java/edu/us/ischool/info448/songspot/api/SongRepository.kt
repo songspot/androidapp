@@ -1,5 +1,6 @@
 package edu.us.ischool.info448.songspot.api
 import android.util.Log
+import com.adamratzman.spotify.SpotifyClientAPI
 import com.adamratzman.spotify.SpotifyAPI
 import com.adamratzman.spotify.spotifyApi
 import edu.us.ischool.info448.songspot.models.Song
@@ -15,17 +16,15 @@ class SongRepository {
     private lateinit var accessToken: String
     private lateinit var api: SpotifyAPI
 
-    private lateinit var songs: ArrayList<Song>
+    private var songs = arrayListOf<Song>()
 
     // Fetches 40 songs from the given playlist to be used for the quiz
     fun fetchCategorySongs(name: String, completion: (ArrayList<Song>) -> Unit) {
         val uri = playlistNameToUriMap.getValue(name)
 
         api.playlists.getPlaylistTracks(uri, 20).queue {response ->
-            Log.d("SONG_SPOT", response.items.toString())
-
-            response.items.forEach {item ->
-                val track = item.track
+            response.items.forEach {
+                val track = it.track
 
                 val trackName = track.name
                 val trackUri = track.uri.uri
@@ -34,12 +33,8 @@ class SongRepository {
                 }.joinToString(" & ")
 
                 val song = Song(trackName, artist, trackUri)
-                Log.d("SONG_SPOT", song.toString())
-
                 songs.add(song)
             }
-
-            Log.d("SONG_SPOT", "Completion called")
             completion(songs)
         }
     }

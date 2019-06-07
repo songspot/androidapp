@@ -16,17 +16,21 @@ class SpotifyRemote {
 
     constructor(context: Context) {
         this.context = context
+        connect {
+            Log.d("SONG_SPOT", "Connecting in constructor")
+        }
     }
 
     fun playSong(uri: String) {
         spotifyAppRemote?.let {
-            val playlistURI = "spotify:playlist:37i9dQZF1DXcBWIGoYBM5M"
-            it.playerApi.play(playlistURI)
+            Log.d("SONG_SPOT", "Trying to play song")
+
+            it.playerApi.play(uri)
 
             // Subscribe to PlayerState
             it.playerApi.subscribeToPlayerState().setEventCallback {
                 val track: Track = it.track
-                Log.d("MainActivity", track.name + " by " + track.artist.name)
+                Log.d("SONG_SPOT", track.name + " by " + track.artist.name)
             }
         }
     }
@@ -46,7 +50,7 @@ class SpotifyRemote {
         SpotifyAppRemote.connect(this.context, connectionParams, object : Connector.ConnectionListener {
             override fun onConnected(appRemote: SpotifyAppRemote) {
                 spotifyAppRemote = appRemote
-                Log.d("MainActivity", "Connected! Yay!")
+                Log.d("SONG_SPOT", "Connected! Yay!")
                 // Now you can start interacting with App Remote
                 onSuccess()
             }
