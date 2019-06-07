@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.spotify.android.appremote.api.SpotifyAppRemote
+import edu.us.ischool.info448.songspot.QuestionActivity
 import edu.us.ischool.info448.songspot.R
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val intent = Intent(this, LoginPage::class.java)
+
         startActivity(intent)
     }
 
