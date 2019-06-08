@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SongSpot</string>
+    <string name="ready">Ready?</string>
     <string name="songspot">SongSpot</string>
 </resources>

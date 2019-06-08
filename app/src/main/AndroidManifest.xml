@@ -2,39 +2,39 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="edu.us.ischool.info448.songspot">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.INTERNET"/>
 
-    <application
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-            <activity android:name=".activites.LoginPage">
-            </activity>
-            <activity android:name=".activites.RegisterPage">
-            </activity>
-            <activity android:name=".activites.MainActivity">
+<application
+        android:name=".api.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
 
-            </activity>
-            <activity
-                    android:name=".activites.GenrePickerActivity"
-                    android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN"/>
-
-                    <category android:name="android.intent.category.LAUNCHER"/>
-                </intent-filter>
-            </activity>
-            <activity
-                    android:name=".activites.GenreOverviewActivity"
-                    android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
-            <activity
-                android:name=".activites.SettingsActivity"
-                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
-            <activity
-                    android:name="com.spotify.sdk.android.authentication.LoginActivity"
-                    android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        </application>
+    <activity android:name=".activites.LoginPage">
+    </activity>
+    <activity android:name=".activites.RegisterPage">
+    </activity>
+    <activity android:name=".QuestionActivity">
+    </activity>
+    <activity android:name=".activites.MainActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent-filter>
+    </activity>
+    <activity
+            android:name="com.spotify.sdk.android.authentication.LoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+    <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>
+    <activity
+            android:name=".activites.GenrePickerActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+    <activity android:name=".activites.GenreOverviewActivity" />
+    <activity
+            android:name=".activites.SettingsActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+</application>
 </manifest>
