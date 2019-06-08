@@ -24,12 +24,13 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         val scoresList = findViewById<ListView>(R.id.scores_list)
+        // Replace hard-coded score values with real ones pulled from Firebase.
         val listAdapter = ScoresAdapter(this, arrayOf("Pop", "Rap", "Electronic", "Indie", "the 70s", "the 80s"), arrayOf(20, 110, 70, 47, 83, 92))
         scoresList.adapter = listAdapter
 
         val saveButton = findViewById<Button>(R.id.save_settings_button)
         saveButton.setOnClickListener {
-            Log.i("CHRISTINA", "save settings")
+            /** SAVE ANY SETTINGS TO FIREBASE HERE **/
         }
     }
 
