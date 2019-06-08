@@ -16,6 +16,11 @@
             <activity android:name=".activites.RegisterPage">
             </activity>
             <activity android:name=".activites.MainActivity">
+
+            </activity>
+            <activity
+                    android:name=".activites.GenrePickerActivity"
+                    android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
                 <intent-filter>
                     <action android:name="android.intent.action.MAIN"/>
 
@@ -23,9 +28,11 @@
                 </intent-filter>
             </activity>
             <activity
-                    android:name=".activites.GenrePickerActivity"
-                    android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-            <activity android:name=".activites.GenreOverviewActivity" />
+                    android:name=".activites.GenreOverviewActivity"
+                    android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+            <activity
+                android:name=".activites.SettingsActivity"
+                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
             <activity
                     android:name="com.spotify.sdk.android.authentication.LoginActivity"
                     android:theme="@android:style/Theme.Translucent.NoTitleBar"/>

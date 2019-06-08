@@ -1,12 +1,12 @@
 package edu.us.ischool.info448.songspot.activites
 
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import edu.us.ischool.info448.songspot.R
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 
@@ -22,7 +22,8 @@ class GenrePickerActivity : AppCompatActivity() {
 
         val settingsButton = findViewById<ImageButton>(R.id.settings_button)
         settingsButton.setOnClickListener {
-            Log.i("CHRISTINA", "Start settings activity")
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
         }
 
         val viewManager = GridLayoutManager(this, 2) // GridLayoutManager 2 columns wide.
