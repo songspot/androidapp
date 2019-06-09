@@ -49,7 +49,8 @@ class QuestionFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_question, container, false)
 
-        //setButtons(view)
+        val songURI = setButtons(view)
+        App.sharedInstance.spotifyRemote.playSong(songURI)
 
         // get references to all four answer choices
         val answer1 = view.findViewById<Button>(R.id.answer1)
@@ -191,11 +192,12 @@ class QuestionFragment : Fragment() {
 
     // Chooses a random song to play/ set as correct answer,
     // randomly populates buttons with answer choices
-    private fun setButtons(view: View) {
+    private fun setButtons(view: View): String {
         val songs:Array<Song> = App.sharedInstance.songRepository.getQuestionSongs()
         val correctTitle = songs.random().title
         val takenOptions: Set<Int> = setOf(5)
         var randButtonIndex = 5
+        var songURI = ""
         for (i in 0..3) {
             while (takenOptions.contains(randButtonIndex)) {
                 randButtonIndex = (1..4).random()
@@ -207,10 +209,11 @@ class QuestionFragment : Fragment() {
             // sets correct answer
             if (songs[i].title.equals(correctTitle)) {
                 correctButton = targetButton
+                songURI = songs[i].spotifyUri
             }
 
         }
-
+        return songURI
     }
 
     // helper function to calculate score based on seconds left
