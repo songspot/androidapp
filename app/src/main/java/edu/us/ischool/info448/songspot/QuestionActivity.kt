@@ -13,17 +13,17 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
         setContentView(R.layout.activity_question)
 
         // by default starts Question Fragment
-        val questionFragment = QuestionFragment.newInstance(1,2)
+        val questionFragment = QuestionFragment.newInstance(1,2, 0)
         supportFragmentManager.beginTransaction().run {
             add(R.id.fragment_container, questionFragment, "QUESTION_FRAGMENT")
             commit()
         }
     }
 
-    override fun onNextQuestion(questionNumber: Int, questionsCount:Int) {
+    override fun onNextQuestion(questionNumber: Int, questionsCount:Int, points: Int) {
         if (questionNumber < (questionsCount + 1)) {
             Log.d("debugging", "Reached redirect!")
-            val questionFragment = QuestionFragment.newInstance(questionNumber, questionsCount)
+            val questionFragment = QuestionFragment.newInstance(questionNumber, questionsCount, points)
             supportFragmentManager.beginTransaction().run {
                 replace(R.id.fragment_container, questionFragment, "QUESTION_FRAGMENT")
                 commit()

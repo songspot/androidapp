@@ -3,11 +3,13 @@ package edu.us.ischool.info448.songspot.activites
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import edu.us.ischool.info448.songspot.R
 import edu.us.ischool.info448.songspot.api.App
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationResponse
+import edu.us.ischool.info448.songspot.QuestionActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,14 +25,16 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        val intent = Intent(this, LoginPage::class.java)
+        val intent = Intent(this, QuestionActivity::class.java)
         startActivity(intent)
+
 
         val request = AuthenticationRequest.Builder(clientId, AuthenticationResponse.Type.TOKEN, redirectUri)
             .setScopes(arrayOf("user-read-private", "playlist-read", "playlist-read-private", "streaming"))
             .build()
 
         AuthenticationClient.openLoginActivity(this, requestCode, request)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent) {
@@ -62,5 +66,6 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
     }
 }
