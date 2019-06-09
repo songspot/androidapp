@@ -100,7 +100,7 @@ class QuestionFragment : Fragment() {
                                         activateBlinking(answer2, false)
                                         activateBlinking(answer3, false)
                                         activateBlinking(answer4, true)
-
+                                        App.sharedInstance.spotifyRemote.pauseSong()
                                         Log.d("debugging", points.toString())
 
                                     }
@@ -144,6 +144,7 @@ class QuestionFragment : Fragment() {
     // starts a blinking animation that is green if the answer is correct, red if otherwise
     // also handles transitions between questions
     private fun activateBlinking(button: Button, willContinue: Boolean) {
+        App.sharedInstance.spotifyRemote.pauseSong()
         var time = 0
         val timer2 = Timer()
         timer2.schedule(object : TimerTask() {
