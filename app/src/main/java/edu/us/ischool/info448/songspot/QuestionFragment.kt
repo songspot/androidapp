@@ -48,7 +48,7 @@ class QuestionFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_question, container, false)
 
-        //val songURI = setButtons(view)
+        val songURI = setButtons(view)
 
         // get references to all four answer choices
         val answer1 = view.findViewById<Button>(R.id.answer1)
@@ -76,7 +76,7 @@ class QuestionFragment : Fragment() {
                         timerDisplay.text = "Go!"
                     }
                     if (readySecondsLeft == 0) {
-                        //App.sharedInstance.spotifyRemote.playSong(songURI)
+                        App.sharedInstance.spotifyRemote.playSong(songURI)
                         answer1.setEnabled(true)
                         answer2.setEnabled(true)
                         answer3.setEnabled(true)
