@@ -1,5 +1,6 @@
 package edu.us.ischool.info448.songspot.activites
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import edu.us.ischool.info448.songspot.R
 import android.widget.*
 import android.view.animation.AnimationUtils
+import edu.us.ischool.info448.songspot.QuestionActivity
 
 /** Shows an overview of a selected genre, including album art, a title, description, and button to start the quiz activity. **/
 class GenreOverviewActivity : AppCompatActivity() {
@@ -41,7 +43,9 @@ class GenreOverviewActivity : AppCompatActivity() {
                 }
 
                 override fun onFinish() {
-                    /** START QUESTION ACTIVITY HERE **/
+                    Log.i("CHRISTINA", "Start new activity!")
+                    val intent = Intent(baseContext, QuestionActivity::class.java)
+                    startActivity(intent)
                 }
             }
             timer.start()
@@ -68,6 +72,6 @@ class GenreOverviewActivity : AppCompatActivity() {
     }
 
     private fun setGenreDescription(genre: String) {
-        // Need to create quiz descriptions...
+
     }
 }
