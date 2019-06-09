@@ -45,10 +45,9 @@ class LoginPage : AppCompatActivity() {
                 if (dataSnapshot.child(username).exists() &&
                     dataSnapshot.child(username).child("password").getValue(true) == password) {
                     println("USER LOGIN AUTHENICATED")
-                    /**
-                     *  ADD IN USERNAME AS ARG TO GIVE TO GENRE PICKING PAGE
-                     *  THEN START GENRE PAGE ACTIVITY
-                     */
+                    val intent = Intent(applicationContext, GenrePickerActivity::class.java)
+                    intent.putExtra("username", username)
+                    startActivity(intent)
                 }
             }
             override fun onCancelled(p0: DatabaseError) {
