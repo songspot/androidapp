@@ -15,17 +15,15 @@
         <activity android:name=".activites.LeaderboardPage">
         </activity>
         <activity android:name=".activites.LoginPage">
-        </activity>
-        <activity android:name=".activites.RegisterPage">
-        </activity>
-        <activity android:name=".QuestionActivity">
-        </activity>
-        <activity android:name=".activites.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".activites.RegisterPage">
+        </activity>
+        <activity android:name=".QuestionActivity">
         </activity>
         <activity
                 android:name="com.spotify.sdk.android.authentication.LoginActivity"
