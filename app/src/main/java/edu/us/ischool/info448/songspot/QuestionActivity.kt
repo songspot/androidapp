@@ -32,7 +32,7 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
             }
         } else {
             val database: DatabaseReference = FirebaseDatabase.getInstance().reference
-            val user = User("getusername", points)
+            val user = User("getusername", points, "Indie")
             database.child("scores").child("genres").child("get_topic").child("username").setValue(user)
 
             val intent = Intent(baseContext, GenrePickerActivity::class.java)
@@ -41,6 +41,11 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
     }
 }
 
-data class User(var username: String = "", var score: Int = 0)
+data class User(var username: String, var score: Int, var category: String): Comparable<User> {
+
+    override fun compareTo(other: User): Int {
+        return score - other.score
+    }
+}
 
 
