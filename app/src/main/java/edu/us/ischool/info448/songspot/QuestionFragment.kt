@@ -76,7 +76,7 @@ class QuestionFragment : Fragment() {
                     if (readySecondsLeft == 0) {
                         Log.d("debugging", songURI)
                         Log.d("debugging", (App.sharedInstance.spotifyRemote).toString())
-                        App.sharedInstance.spotifyRemote.playSong("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL")
+                        App.sharedInstance.spotifyRemote.playSong(songURI)
                         answer1.setEnabled(true)
                         answer2.setEnabled(true)
                         answer3.setEnabled(true)
