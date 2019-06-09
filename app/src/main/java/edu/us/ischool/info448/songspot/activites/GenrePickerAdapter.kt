@@ -24,16 +24,16 @@ class GenrePickerAdapter(private val genreList: Array<String>) :
 
         val textView : TextView = itemView.findViewById(R.id.genre_text_view)
         val cardView : CardView = itemView.findViewById(R.id.genre_card_view)
-        var genresView : RecyclerView = itemView.findViewById(R.id.genre_recycler_view)
-        var loginButton : ProgressBar = itemView.findViewById(R.id.progressBar3)
+//        var genresView : RecyclerView = itemView.findViewById(R.id.genre_recycler_view)
+//        var loginButton : ProgressBar = itemView.findViewById(R.id.progressBar3)
 
         init {
             itemView.setOnClickListener {
                 val i = Intent(context, GenreOverviewActivity::class.java)
                 val genreName = textView.text.toString()
-                genresView.visibility = View.INVISIBLE
-                loginButton.visibility = View.VISIBLE
-                
+//                genresView.visibility = View.INVISIBLE
+//                loginButton.visibility = View.VISIBLE
+
                 i.putExtra("GENRE_NAME", genreName)
 
                 App.sharedInstance.songRepository.fetchCategorySongs(genreName) {
