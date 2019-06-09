@@ -56,8 +56,6 @@ class QuestionFragment : Fragment() {
         val answer3 = view.findViewById<Button>(R.id.answer3)
         val answer4 = view.findViewById<Button>(R.id.answer4)
 
-        correctButton = answer1
-
         // reference to timer display
         val timerDisplay = view.findViewById<TextView>(R.id.timer)
         val timer = Timer()
@@ -76,6 +74,7 @@ class QuestionFragment : Fragment() {
                         timerDisplay.text = "Go!"
                     }
                     if (readySecondsLeft == 0) {
+                        Log.d("debugging", songURI)
                         App.sharedInstance.spotifyRemote.playSong(songURI)
                         answer1.setEnabled(true)
                         answer2.setEnabled(true)
@@ -193,18 +192,23 @@ class QuestionFragment : Fragment() {
     // randomly populates buttons with answer choices
     private fun setButtons(view: View): String {
         val songs:Array<Song> = App.sharedInstance.songRepository.getQuestionSongs()
+        Log.d("debug", songs.toString())
         val correctTitle = songs.random().title
-        val takenOptions: Set<Int> = setOf(5)
+        Log.d("debugging", correctTitle)
+        var takenOptions: Set<Int> = setOf(5)
         var randButtonIndex = 5
         var songURI = ""
         for (i in 0..3) {
             while (takenOptions.contains(randButtonIndex)) {
                 randButtonIndex = (1..4).random()
             }
-            takenOptions.plus(randButtonIndex)
+            takenOptions = takenOptions.plus(randButtonIndex)
+
             val targetID = resources.getIdentifier("answer" + randButtonIndex, "id", "edu.us.ischool.info448.songspot")
+            Log.d("debugging", randButtonIndex.toString())
             val targetButton = view.findViewById<Button>(targetID)
             targetButton.text = songs[i].title
+            Log.d("debugging", songs[i].title)
             // sets correct answer
             if (songs[i].title.equals(correctTitle)) {
                 correctButton = targetButton
