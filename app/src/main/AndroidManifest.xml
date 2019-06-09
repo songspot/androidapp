@@ -12,7 +12,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-
+        <activity android:name=".activites.LeaderboardPage">
+        </activity>
         <activity android:name=".activites.LoginPage">
         </activity>
         <activity android:name=".activites.RegisterPage">
@@ -22,16 +23,22 @@
         <activity android:name=".activites.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
                 android:name="com.spotify.sdk.android.authentication.LoginActivity"
                 android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>
+
+        <meta-data
+                android:name="preloaded_fonts"
+                android:resource="@array/preloaded_fonts"/>
+
         <activity
                 android:name=".activites.GenrePickerActivity"
-                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".activites.GenreOverviewActivity" />
+                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity android:name=".activites.GenreOverviewActivity"/>
     </application>
+
 </manifest>
