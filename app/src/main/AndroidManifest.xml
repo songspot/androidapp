@@ -30,9 +30,11 @@
                 android:name=".activites.GenrePickerActivity"
                 android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         </activity>
-        <activity android:name=".activites.GenreOverviewActivity">
+        <activity android:name=".activites.GenreOverviewActivity"
+                  android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         </activity>
-        <activity android:name=".activites.LeaderboardActivity">
+        <activity android:name=".activites.LeaderboardActivity"
+                  android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         </activity>
         <meta-data
                 android:name="preloaded_fonts"
