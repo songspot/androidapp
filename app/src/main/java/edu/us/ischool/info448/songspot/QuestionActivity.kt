@@ -4,7 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import edu.us.ischool.info448.songspot.activites.MainActivity
+import edu.us.ischool.info448.songspot.activites.GenrePickerActivity
 
 class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionListener {
 
@@ -29,7 +29,7 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
                 commit()
             }
         } else {
-            val intent = Intent(baseContext, MainActivity::class.java)
+            val intent = Intent(baseContext, GenrePickerActivity::class.java)
             startActivity(intent)
         }
     }
