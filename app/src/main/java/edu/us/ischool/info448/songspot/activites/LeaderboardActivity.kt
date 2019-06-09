@@ -8,13 +8,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.google.firebase.database.*
 import edu.us.ischool.info448.songspot.R
 
-/** Personal user stats & settings. **/
 class LeaderboardActivity : AppCompatActivity() {
+
+    private lateinit var database : DatabaseReference
+
+    // Hard-coded for now.
+    val genreList : Array<String> = arrayOf(
+        "Today's Pop Hits",
+        "Rap Caviar",
+        "Hot Country",
+        "Ultimate Indie",
+        "Rock Classics",
+        "All Out 70s")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard)
+
+        database = FirebaseDatabase.getInstance().reference
+        val leaderboardListener = object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val users = snapshot.getValue()
+                // Sort users by score here.
+            }
+
+            override fun onCancelled(p0: DatabaseError) {}
+        }
+        database.addValueEventListener(leaderboardListener)
 
         val backButton = findViewById<ImageButton>(R.id.leaderboard_back_button)
         backButton.setOnClickListener {
@@ -23,8 +46,8 @@ class LeaderboardActivity : AppCompatActivity() {
         }
 
         val scoresList = findViewById<ListView>(R.id.scores_list)
-        // Replace hard-coded score values with real ones pulled from Firebase.
-        val listAdapter = ScoresAdapter(this, arrayOf("Pop", "Rap", "Electronic", "Indie", "the 70s", "the 80s"), arrayOf(20, 110, 70, 47, 83, 92))
+
+        val listAdapter = ScoresAdapter(this, genreList, arrayOf(20, 110, 70, 47, 83, 92))
         scoresList.adapter = listAdapter
     }
 
@@ -38,10 +61,12 @@ class LeaderboardActivity : AppCompatActivity() {
         override fun getItemId(p0: Int): Long { return p0.toLong() }
 
         override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-            val rowView = inflater.inflate(R.layout.settings_list_item, p2, false)
-            val genreView = rowView.findViewById<TextView>(R.id.settings_list_item_name)
-            val scoreView = rowView.findViewById<TextView>(R.id.settings_list_item_score)
+            val rowView = inflater.inflate(R.layout.leaderboard_list_item, p2, false)
+            val usernameView = rowView.findViewById<TextView>(R.id.leaderboard_item_username)
+            val genreView = rowView.findViewById<TextView>(R.id.leaderboard_item_genre)
+            val scoreView = rowView.findViewById<TextView>(R.id.leaderboard_item_score)
 
+            usernameView.text = (p0 + 1).toString() + ". username"
             genreView.text = genreList[p0]
             scoreView.text = scoreList[p0].toString()
 

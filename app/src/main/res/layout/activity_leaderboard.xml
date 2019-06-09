@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
             app:contentPaddingLeft="8dp"
             app:contentPaddingRight="8dp"
             app:cardCornerRadius="6dp"
