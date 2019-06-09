@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.google.firebase.database.*
 import edu.us.ischool.info448.songspot.R
 
@@ -45,10 +46,11 @@ class LoginPage : AppCompatActivity() {
                 if (dataSnapshot.child(username).exists() &&
                     dataSnapshot.child(username).child("password").getValue(true) == password) {
                     println("USER LOGIN AUTHENICATED")
-                    /**
-                     *  ADD IN USERNAME AS ARG TO GIVE TO GENRE PICKING PAGE
-                     *  THEN START GENRE PAGE ACTIVITY
-                     */
+                    val intent = Intent(applicationContext, GenrePickerActivity::class.java)
+                    intent.putExtra("username", username)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(applicationContext, "Incorrect Credentials", Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onCancelled(p0: DatabaseError) {
