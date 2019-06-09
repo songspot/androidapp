@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activites.LoginPage">
+        tools:context=".activites.LoginPage" android:background="#212121">
 
     <TextView
             android:text="@string/songspot"
@@ -14,22 +14,11 @@
             android:id="@+id/TitleLabel"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginBottom="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="32dp" android:layout_marginRight="32dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="32dp" android:layout_marginTop="8dp"
             app:layout_constraintHorizontal_bias="0.498" app:layout_constraintVertical_bias="0.127"
-            app:layout_constraintBottom_toTopOf="@+id/username"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/password"
-            app:layout_constraintTop_toBottomOf="@+id/displayName"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp" android:hint="Enter password"
-            app:layout_constraintBottom_toTopOf="@+id/loginButton"/>
+            app:layout_constraintBottom_toTopOf="@+id/username" android:textSize="30sp" android:textColor="#FFFFFF"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,8 +28,13 @@
             app:layout_constraintTop_toBottomOf="@+id/TitleLabel"
             app:layout_constraintBottom_toTopOf="@+id/displayName" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+<<<<<<< HEAD
             app:layout_constraintStart_toStartOf="parent" android:hint="Email"
     />
+=======
+            app:layout_constraintStart_toStartOf="parent" android:hint="Username"
+            android:textColor="#FFFFFF" android:textColorHint="#FFFFFF"/>
+>>>>>>> master
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,6 +52,7 @@
             android:id="@+id/displayName"
             app:layout_constraintTop_toBottomOf="@+id/username"
             app:layout_constraintBottom_toTopOf="@+id/password" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:hint="Display Name"/>
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:hint="Display Name" android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"/>
 </android.support.constraint.ConstraintLayout>

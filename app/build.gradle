@@ -23,6 +23,8 @@ android {
 }
 
 repositories {
+    maven { url 'https://jitpack.io' }
+    jcenter()
     google()
     mavenCentral()
     flatDir {
@@ -39,18 +41,24 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.6.1'
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    //implementation 'com.spotify.sdk:spotify-auth-release:1.1.0@aar'
     implementation project(':spotify-auth-release-1.1.0')
+    implementation 'com.github.adamint:spotify-web-api-kotlin:dev-SNAPSHOT'
     implementation 'com.google.firebase:firebase-database:16.0.4'
+<<<<<<< HEAD
 //    implementation 'com.google.firebase:firebase-auth:17.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+=======
+>>>>>>> master
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation('com.github.bumptech.glide:glide:4.4.0') {
         exclude group: "com.android.support"
     }
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
 }
 

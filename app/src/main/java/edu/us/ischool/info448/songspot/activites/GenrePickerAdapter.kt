@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import edu.us.ischool.info448.songspot.R
+import edu.us.ischool.info448.songspot.api.App
 
 /** Custom RecyclerView adapter to display song genres. **/
 class GenrePickerAdapter(private val genreList: Array<String>) :
@@ -24,8 +25,14 @@ class GenrePickerAdapter(private val genreList: Array<String>) :
         init {
             itemView.setOnClickListener {
                 val i = Intent(context, GenreOverviewActivity::class.java)
-                i.putExtra("GENRE_NAME", textView.text)
-                context.startActivity(i)
+                val genreName = textView.text.toString()
+
+                i.putExtra("GENRE_NAME", genreName)
+
+                App.sharedInstance.songRepository.fetchCategorySongs(genreName) {
+                    println("SUCCESSFULLY FETCHED SONGS")
+                    context.startActivity(i)
+                }
             }
         }
     }
@@ -41,7 +48,7 @@ class GenrePickerAdapter(private val genreList: Array<String>) :
         Color.parseColor("#FFA726"), // Pop
         Color.parseColor("#303F9F"), // Rap
         Color.parseColor("#80CBC4"), // Electronic
-        Color.parseColor("#C8E6C9"), // Indie
+        Color.parseColor("#4CAF50"), // Indie
         Color.parseColor("#EF5350"), // The 70s
         Color.parseColor("#7E57C2")) // The 80s
 

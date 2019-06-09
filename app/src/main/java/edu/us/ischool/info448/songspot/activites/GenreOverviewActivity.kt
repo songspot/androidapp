@@ -24,7 +24,7 @@ class GenreOverviewActivity : AppCompatActivity() {
         val genreName = intent.getStringExtra("GENRE_NAME")
 
         genreLabel.text = genreName
-        setGenreImage(genreName, genreAlbumArt)
+        // setGenreImage(genreName, genreAlbumArt)
         setGenreDescription(genreName)
 
         // Set countdown number animations.
@@ -41,7 +41,7 @@ class GenreOverviewActivity : AppCompatActivity() {
                 }
 
                 override fun onFinish() {
-                    Log.i("CHRISTINA", "Start new activity!")
+                    /** START QUESTION ACTIVITY HERE **/
                 }
             }
             timer.start()
@@ -68,6 +68,6 @@ class GenreOverviewActivity : AppCompatActivity() {
     }
 
     private fun setGenreDescription(genre: String) {
-
+        // Need to create quiz descriptions...
     }
 }
