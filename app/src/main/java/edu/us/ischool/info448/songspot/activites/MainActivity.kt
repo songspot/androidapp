@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        val intent = Intent(this, QuestionActivity::class.java)
+        val intent = Intent(this, LoginPage::class.java)
         startActivity(intent)
 
 
