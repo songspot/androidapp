@@ -60,8 +60,8 @@ class SongRepository {
         this.accessToken = token
         api = spotifyApi {
             credentials {
-                clientId = "33d1e95c57e6460e806a7a9699406d17"
-                clientSecret = "ccfa3f280483413eb9d2fad4abebf1cc"
+                clientId = App.sharedInstance.clientId
+                clientSecret = App.sharedInstance.clientSecret
             }
             authentication {
                 tokenString = accessToken

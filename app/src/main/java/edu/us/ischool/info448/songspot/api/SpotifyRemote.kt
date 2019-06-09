@@ -8,8 +8,6 @@ import com.spotify.android.appremote.api.SpotifyAppRemote
 import com.spotify.protocol.types.Track
 
 class SpotifyRemote {
-    private val clientId = "33d1e95c57e6460e806a7a9699406d17"
-    private val redirectUri = "http://localhost:8888/callback/"
     private var spotifyAppRemote: SpotifyAppRemote? = null
 
     private var context: Context
@@ -42,8 +40,8 @@ class SpotifyRemote {
     }
 
     fun connect(onSuccess: () -> Unit) {
-        val connectionParams = ConnectionParams.Builder(clientId)
-            .setRedirectUri(redirectUri)
+        val connectionParams = ConnectionParams.Builder(App.sharedInstance.redirectUri)
+            .setRedirectUri(App.sharedInstance.redirectUri)
             .showAuthView(true)
             .build()
 
