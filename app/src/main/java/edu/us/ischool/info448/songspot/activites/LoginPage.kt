@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 //import com.google.firebase.auth.FirebaseAuth
 //import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -25,12 +26,6 @@ class LoginPage : AppCompatActivity() {
         setContentView(R.layout.activity_login_page)
 
         database = FirebaseDatabase.getInstance().reference
-//        auth = FirebaseAuth.getInstance()
-//
-//        var loginButton : Button = findViewById(R.id.loginButton)
-//        var username : EditText = findViewById(R.id.username)
-//        var password : EditText = findViewById(R.id.password)
-//        var registerButton : Button = findViewById(R.id.register)
 
         loginButton.setOnClickListener {
             loginUser(username.text.toString(), password.text.toString())
@@ -43,55 +38,25 @@ class LoginPage : AppCompatActivity() {
     }
 
 
-//    private fun signIn(email: String, password: String) {
-//        // [START sign_in_with_email]
-//        auth.signInWithEmailAndPassword(email, password)
-//            .addOnCompleteListener(this) { task ->
-//                if (task.isSuccessful) {
-//                    // Sign in success, update UI with the signed-in user's information
-//                    Log.w("TAG", "signInWithEmail:success")
-//                    // Take to new activity
-//                } else {
-//                    // If sign in fails, display a message to the user.
-//                    Log.w("TAG", "signInWithEmail:failure", task.exception)
-//                }
-//            }
-//    }
-
 //      Logs user into their account after taking in a username and password.
 //     Will check database if username/password combo exists
     private fun loginUser(username: String, password:String) {
-        if (validForm()) {
-            database.child("users").addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (dataSnapshot.child(username).exists() && dataSnapshot.child(username).child("password").getValue(
-                            true
-                        ) == password
-                    ) {
-                        println("USER LOGIN AUTHENICATED")
-                        /**
-                         *  ADD IN USERNAME AS ARG TO GIVE TO GENRE PICKING PAGE
-                         *  THEN START GENRE PAGE ACTIVITY
-                         */
-                    }
+        val thisContext = this
+        database.child("users").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.child(username).exists() && dataSnapshot.child(username).child("password").getValue(true) == password) {
+                    println("USER LOGIN AUTHENICATED")
+                    /**
+                     *  ADD IN USERNAME AS ARG TO GIVE TO GENRE PICKING PAGE
+                     *  THEN START GENRE PAGE ACTIVITY
+                     */
+                } else {
+                    Toast.makeText(thisContext, "Login information was incorrect or accountt does not exist!", Toast.LENGTH_SHORT).show()
                 }
+            }
 
-                override fun onCancelled(p0: DatabaseError) {
-                }
-            })
-        }
-    }
-
-    // Checks whether form is properly filled
-    private fun validForm() : Boolean {
-        if (username.text.isEmpty()) {
-            // do something
-            return false
-        }
-        if (password.text.isEmpty()) {
-            // do something
-            return false
-        }
-        return true
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        })
     }
 }
