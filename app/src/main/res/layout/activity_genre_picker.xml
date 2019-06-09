@@ -22,13 +22,13 @@
                 android:textSize="36dp"
                 android:text="Quiz Categories"/>
         <ImageButton
-                android:id="@+id/settings_button"
+                android:id="@+id/leaderboard_button"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_alignParentRight="true"
                 android:scaleType="centerCrop"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_outline_settings_24px"/>
+                android:src="@drawable/ic_outline_statistics_24px"/>
     </RelativeLayout>
     <android.support.v7.widget.RecyclerView
             android:id="@+id/genre_recycler_view"

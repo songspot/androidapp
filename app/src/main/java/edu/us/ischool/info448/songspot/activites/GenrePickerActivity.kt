@@ -20,9 +20,9 @@ class GenrePickerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_genre_picker)
 
-        val settingsButton = findViewById<ImageButton>(R.id.settings_button)
-        settingsButton.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
+        val leaderboardButton = findViewById<ImageButton>(R.id.leaderboard_button)
+        leaderboardButton.setOnClickListener {
+            val intent = Intent(this, LeaderboardActivity::class.java)
             startActivity(intent)
         }
 

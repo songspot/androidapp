@@ -11,7 +11,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp">
         <ImageButton
-                android:id="@+id/settings_back_button"
+                android:id="@+id/leaderboard_back_button"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_alignParentLeft="true"
@@ -23,7 +23,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="#FAFAFA"
                 android:textSize="36dp"
-                android:text="Settings"/>
+                android:text="Leaderboard"/>
     </RelativeLayout>
     <app:android.support.v7.widget.CardView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -43,21 +43,4 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"/>
     </app:android.support.v7.widget.CardView>
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="24dp">
-        <Button
-                android:id="@+id/save_settings_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|bottom"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:paddingLeft="28dp"
-                android:paddingRight="28dp"
-                android:textSize="16sp"
-                android:text="Save"/>
-    </FrameLayout>
-
 </LinearLayout>

@@ -34,7 +34,7 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
     <activity android:name=".activites.GenreOverviewActivity" />
     <activity
-            android:name=".activites.SettingsActivity"
+            android:name=".activites.LeaderboardActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
 </application>
 </manifest>

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +11,12 @@ import android.widget.*
 import edu.us.ischool.info448.songspot.R
 
 /** Personal user stats & settings. **/
-class SettingsActivity : AppCompatActivity() {
+class LeaderboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        setContentView(R.layout.activity_leaderboard)
 
-        val backButton = findViewById<ImageButton>(R.id.settings_back_button)
+        val backButton = findViewById<ImageButton>(R.id.leaderboard_back_button)
         backButton.setOnClickListener {
             val intent = Intent(this, GenrePickerActivity::class.java)
             startActivity(intent)
@@ -27,11 +26,6 @@ class SettingsActivity : AppCompatActivity() {
         // Replace hard-coded score values with real ones pulled from Firebase.
         val listAdapter = ScoresAdapter(this, arrayOf("Pop", "Rap", "Electronic", "Indie", "the 70s", "the 80s"), arrayOf(20, 110, 70, 47, 83, 92))
         scoresList.adapter = listAdapter
-
-        val saveButton = findViewById<Button>(R.id.save_settings_button)
-        saveButton.setOnClickListener {
-            /** SAVE ANY SETTINGS TO FIREBASE HERE **/
-        }
     }
 
     class ScoresAdapter(context: Context, private val genreList: Array<String>, private val scoreList: Array<Int>) : BaseAdapter() {
