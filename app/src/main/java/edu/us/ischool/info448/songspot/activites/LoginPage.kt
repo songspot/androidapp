@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.database.*
 import edu.us.ischool.info448.songspot.R
+import edu.us.ischool.info448.songspot.api.App
 
 class LoginPage : AppCompatActivity() {
 
@@ -48,7 +49,8 @@ class LoginPage : AppCompatActivity() {
                     println("USER LOGIN AUTHENTICATED")
 
                     val intent = Intent(applicationContext, GenrePickerActivity::class.java)
-                    intent.putExtra("username", username)
+                    App.sharedInstance.username = username
+
                     startActivity(intent)
                 } else {
                     Toast.makeText(applicationContext, "Incorrect Credentials", Toast.LENGTH_SHORT).show()

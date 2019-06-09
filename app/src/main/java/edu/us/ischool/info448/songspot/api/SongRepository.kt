@@ -7,10 +7,13 @@ import edu.us.ischool.info448.songspot.models.Song
 
 class SongRepository {
 
-    // TODO: Fill this in with valid playlist and their spotify URI
     private val playlistNameToUriMap = hashMapOf(
-        "Indie" to "spotify:playlist:37i9dQZF1DX2sUQwD7tbmL",
-        "Piano" to "spotify:playlist:37i9dQZF1DX7K31D69s4M1"
+        "Today's Pop Hits" to "spotify:playlist:37i9dQZF1DXcBWIGoYBM5M",
+        "Rap Caviar" to "spotify:playlist:37i9dQZF1DX0XUsuxWHRQd",
+        "Hot Country" to "spotify:playlist:37i9dQZF1DX1lVhptIYRda",
+        "Ultimate Indie" to "spotify:playlist:37i9dQZF1DX2Nc3B70tvx0",
+        "Rock Classics" to "spotify:playlist:37i9dQZF1DWXRqgorJj26U",
+        "All Out 70s" to "spotify:playlist:37i9dQZF1DWTJ7xPn4vNaz"
     )
 
     private lateinit var accessToken: String
