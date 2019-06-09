@@ -40,7 +40,7 @@ class SpotifyRemote {
     }
 
     fun connect(onSuccess: () -> Unit) {
-        val connectionParams = ConnectionParams.Builder(App.sharedInstance.redirectUri)
+        val connectionParams = ConnectionParams.Builder(App.sharedInstance.clientId)
             .setRedirectUri(App.sharedInstance.redirectUri)
             .showAuthView(true)
             .build()
