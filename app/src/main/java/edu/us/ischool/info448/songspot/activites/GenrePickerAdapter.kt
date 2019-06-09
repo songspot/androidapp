@@ -41,7 +41,7 @@ class GenrePickerAdapter(private val genreList: Array<String>) :
         Color.parseColor("#FFA726"), // Pop
         Color.parseColor("#303F9F"), // Rap
         Color.parseColor("#80CBC4"), // Electronic
-        Color.parseColor("#C8E6C9"), // Indie
+        Color.parseColor("#4CAF50"), // Indie
         Color.parseColor("#EF5350"), // The 70s
         Color.parseColor("#7E57C2")) // The 80s
 

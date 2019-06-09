@@ -1,12 +1,11 @@
 package edu.us.ischool.info448.songspot
 
 import android.content.Context
-import android.graphics.Color
-import android.net.Uri
+
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v4.content.ContextCompat.getColor
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +17,7 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Interpolator
 import android.widget.Button
-import android.widget.Toast
+
 import edu.us.ischool.info448.songspot.api.App
 import edu.us.ischool.info448.songspot.models.Song
 
@@ -50,7 +49,6 @@ class QuestionFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_question, container, false)
 
         //val songURI = setButtons(view)
-
 
         // get references to all four answer choices
         val answer1 = view.findViewById<Button>(R.id.answer1)
@@ -162,7 +160,7 @@ class QuestionFragment : Fragment() {
                         }
                         val mAnimation = AlphaAnimation(1f, 0f)
                         mAnimation.duration = 200
-                        mAnimation.interpolator = LinearInterpolator() as Interpolator
+                        mAnimation.interpolator = LinearInterpolator()
                         mAnimation.repeatCount = 1
                         mAnimation.repeatMode = Animation.REVERSE
                         button.startAnimation(mAnimation)

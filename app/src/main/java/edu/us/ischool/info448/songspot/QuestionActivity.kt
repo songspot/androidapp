@@ -4,6 +4,8 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import edu.us.ischool.info448.songspot.activites.GenrePickerActivity
 
 class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionListener {
@@ -29,8 +31,16 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
                 commit()
             }
         } else {
+            val database: DatabaseReference = FirebaseDatabase.getInstance().reference
+            val user = User("getusername", points)
+            database.child("scores").child("genres").child("get_topic").child("username").setValue(user)
+
             val intent = Intent(baseContext, GenrePickerActivity::class.java)
             startActivity(intent)
         }
     }
 }
+
+data class User(var username: String = "", var score: Int = 0)
+
+
