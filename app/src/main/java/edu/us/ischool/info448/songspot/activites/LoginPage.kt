@@ -64,7 +64,7 @@ class LoginPage : AppCompatActivity() {
                     password.visibility = View.INVISIBLE
                     loginButton.visibility = View.INVISIBLE
                     registerButton.visibility = View.INVISIBLE
-                    
+
                     val intent = Intent(applicationContext, GenrePickerActivity::class.java)
                     App.sharedInstance.username = usernameLogin
 
