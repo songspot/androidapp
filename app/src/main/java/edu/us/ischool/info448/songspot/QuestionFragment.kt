@@ -75,7 +75,7 @@ class QuestionFragment : Fragment() {
                     }
                     if (readySecondsLeft == 0) {
                         Log.d("debugging", songURI)
-                        App.sharedInstance.spotifyRemote.playSong(songURI)
+                        App.sharedInstance.spotifyRemote.playSong("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL")
                         answer1.setEnabled(true)
                         answer2.setEnabled(true)
                         answer3.setEnabled(true)
@@ -164,6 +164,9 @@ class QuestionFragment : Fragment() {
                         mAnimation.repeatCount = 1
                         mAnimation.repeatMode = Animation.REVERSE
                         button.startAnimation(mAnimation)
+                    }
+                    if (time == 3) {
+                        timer2.cancel()
                     }
                     if (time == 3 && willContinue) {
                         questionNumber = questionNumber!! + 1
