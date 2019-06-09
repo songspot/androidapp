@@ -1,5 +1,6 @@
 package edu.us.ischool.info448.songspot.activites
 
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -21,11 +22,12 @@ class GenreOverviewActivity : AppCompatActivity() {
         val countdownView = findViewById<TextSwitcher>(R.id.genre_overview_countdown)
         val genreLabel = findViewById<TextView>(R.id.genre_overview_label)
         val genreAlbumArt = findViewById<ImageView>(R.id.genre_album_art)
+        val genreDescription = findViewById<TextView>(R.id.genre_description)
         val genreName = intent.getStringExtra("GENRE_NAME")
 
         genreLabel.text = genreName
-        // setGenreImage(genreName, genreAlbumArt)
-        setGenreDescription(genreName)
+        setGenreImage(genreName, genreAlbumArt)
+        setGenreDescription(genreName, genreDescription)
 
         // Set countdown number animations.
         val fadeIn = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
@@ -37,6 +39,8 @@ class GenreOverviewActivity : AppCompatActivity() {
         startButton.setOnClickListener {
             val timer = object: CountDownTimer(3000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
+                    // Tint background darker and show 3-2-1 text.
+                    countdownView.setBackgroundColor(Color.parseColor("#90000000"))
                     countdownView.setText((millisUntilFinished / 1000 + 1).toString())
                 }
 
@@ -51,12 +55,12 @@ class GenreOverviewActivity : AppCompatActivity() {
     /** Load and set the album art. **/
     private fun setGenreImage(genre: String, imgView: ImageView) {
         val img = when(genre) {
-            "Pop" -> "maroon5.png"
-            "Rap" -> "gambino.jpg"
-            "Electronic" -> "superdream.jpg"
-            "Indie" -> "currents.jpg"
-            "the 70s" -> "fleetwood_mac.jpg"
-            "the 80s" -> "acdc.jpg"
+            "Today's Pop Hits" -> "chainsmokers.jpg"
+            "Rap Caviar" -> "drake.jpg"
+            "Hot Country" -> "jason_aldean.jpg"
+            "Ultimate Indie" -> "currents.jpg"
+            "Rock Classics" -> "acdc.jpg"
+            "All Out 70s" -> "fleetwood_mac.jpg"
             else -> ""
         }
 
@@ -67,7 +71,16 @@ class GenreOverviewActivity : AppCompatActivity() {
             .into(imgView)
     }
 
-    private fun setGenreDescription(genre: String) {
-        // Need to create quiz descriptions...
+    /** Set the genre description. **/
+    private fun setGenreDescription(genre: String, textView: TextView) {
+        textView.text = when(genre) {
+            "Today's Pop Hits" -> "The most current pop grooves."
+            "Rap Caviar" -> "Brand new rap served fresh."
+            "Hot Country" -> "Today's top country hits!"
+            "Ultimate Indie" -> "The best indie tracks right now."
+            "Rock Classics" -> "Rock legends and epic songs spanning decades that continue to inspire generations."
+            "All Out 70s" -> "From disco to soft rock, and funk to punk, the '70s had a little something for everyone."
+            else -> ""
+        }
     }
 }
