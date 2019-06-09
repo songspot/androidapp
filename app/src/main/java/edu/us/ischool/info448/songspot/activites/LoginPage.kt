@@ -41,11 +41,12 @@ class LoginPage : AppCompatActivity() {
         // check if user exists
         // if user exists take them to the application
         // if they do not, don't do anything
-        database.child("users").addListenerForSingleValueEvent(object: ValueEventListener{
+        database.child("users").addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.child(username).exists() &&
                     dataSnapshot.child(username).child("password").getValue(true) == password) {
-                    println("USER LOGIN AUTHENICATED")
+                    println("USER LOGIN AUTHENTICATED")
+
                     val intent = Intent(applicationContext, GenrePickerActivity::class.java)
                     intent.putExtra("username", username)
                     startActivity(intent)

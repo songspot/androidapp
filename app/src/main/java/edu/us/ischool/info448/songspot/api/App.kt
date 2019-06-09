@@ -11,6 +11,10 @@ class App: Application() {
     lateinit var spotifyRemote: SpotifyRemote
     lateinit var songRepository: SongRepository
 
+    val clientId = "33d1e95c57e6460e806a7a9699406d17"
+    val redirectUri = "http://localhost:8888/callback/"
+    val clientSecret = "ccfa3f280483413eb9d2fad4abebf1cc"
+
     override fun onCreate() {
         super.onCreate()
 
