@@ -12,6 +12,7 @@
             android:id="@+id/genre_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
             android:textColor="#FAFAFA"
             android:textSize="28dp"
             android:text="placeholder"/>

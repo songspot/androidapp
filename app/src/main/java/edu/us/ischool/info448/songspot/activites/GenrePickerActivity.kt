@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import edu.us.ischool.info448.songspot.R
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import com.spotify.sdk.android.authentication.AuthenticationClient
@@ -27,9 +26,10 @@ class GenrePickerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_genre_picker)
 
-        val settingsButton = findViewById<ImageButton>(R.id.settings_button)
-        settingsButton.setOnClickListener {
-            Log.i("CHRISTINA", "Start settings activity")
+        val leaderboardButton = findViewById<ImageButton>(R.id.leaderboard_button)
+        leaderboardButton.setOnClickListener {
+            val intent = Intent(this, LeaderboardActivity::class.java)
+            startActivity(intent)
         }
 
         val viewManager = GridLayoutManager(this, 2) // GridLayoutManager 2 columns wide.
