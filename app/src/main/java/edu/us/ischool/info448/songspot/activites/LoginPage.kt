@@ -10,6 +10,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.database.*
 import edu.us.ischool.info448.songspot.R
+import edu.us.ischool.info448.songspot.api.App
 
 class LoginPage : AppCompatActivity() {
 
@@ -64,9 +65,9 @@ class LoginPage : AppCompatActivity() {
                     loginButton.visibility = View.INVISIBLE
                     registerButton.visibility = View.INVISIBLE
 
-
                     val intent = Intent(applicationContext, GenrePickerActivity::class.java)
-                    intent.putExtra("username", usernameLogin)
+                    App.sharedInstance.username = usernameLogin
+
                     startActivity(intent)
                 } else {
                     Toast.makeText(applicationContext, "Incorrect Credentials", Toast.LENGTH_SHORT).show()

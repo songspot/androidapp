@@ -15,6 +15,8 @@ class App: Application() {
     val redirectUri = "http://localhost:8888/callback/"
     val clientSecret = "ccfa3f280483413eb9d2fad4abebf1cc"
 
+    lateinit var username: String
+
     override fun onCreate() {
         super.onCreate()
 

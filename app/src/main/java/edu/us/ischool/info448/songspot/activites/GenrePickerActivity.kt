@@ -20,7 +20,13 @@ class GenrePickerActivity : AppCompatActivity() {
     private val requestCode = 1337
 
     // List of available music genres to take quizzes from (probably move to some kind of data repository).
-    private val genreList : Array<String> = arrayOf("Pop", "Rap", "Electronic", "Indie", "the 70s", "the 80s")
+    private val genreList : Array<String> = arrayOf(
+        "Today's Pop Hits",
+        "Rap Caviar",
+        "Hot Country",
+        "Ultimate Indie",
+        "Rock Classics",
+        "All Out 70s")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
