@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import edu.us.ischool.info448.songspot.R
 import edu.us.ischool.info448.songspot.api.App
@@ -19,14 +20,20 @@ class GenrePickerAdapter(private val genreList: Array<String>) :
     /** Reference to the views for each genre item. **/
     class GenreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val context : Context = itemView.context
+
+
         val textView : TextView = itemView.findViewById(R.id.genre_text_view)
         val cardView : CardView = itemView.findViewById(R.id.genre_card_view)
+        var genresView : RecyclerView = itemView.findViewById(R.id.genre_recycler_view)
+        var loginButton : ProgressBar = itemView.findViewById(R.id.progressBar3)
 
         init {
             itemView.setOnClickListener {
                 val i = Intent(context, GenreOverviewActivity::class.java)
                 val genreName = textView.text.toString()
-
+                genresView.visibility = View.INVISIBLE
+                loginButton.visibility = View.VISIBLE
+                
                 i.putExtra("GENRE_NAME", genreName)
 
                 App.sharedInstance.songRepository.fetchCategorySongs(genreName) {
