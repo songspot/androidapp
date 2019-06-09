@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.database.*
 //import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import edu.us.ischool.info448.songspot.R
 
 class RegisterPage : AppCompatActivity() {
@@ -29,13 +28,31 @@ class RegisterPage : AppCompatActivity() {
         var password : EditText = findViewById(R.id.password)
 
         registerButton.setOnClickListener {
-            if (username.text.isNotEmpty() && display.text.isNotEmpty() && password.text.isNotEmpty()) {
+            if (validForm(username.text.toString(), display.text.toString(), password.text.toString())) {
                 createNewUser(username.text.toString(), display.text.toString(), password.text.toString())
             } else {
+                println("yes")
                 Toast.makeText(applicationContext, "Incomplete Template", Toast.LENGTH_SHORT).show()
-
             }
         }
+    }
+
+
+    private fun validForm(username: String, display: String, password: String) : Boolean {
+        if (username.isEmpty() || display.isEmpty() || password.isEmpty()) {
+            return false
+        }
+        var result = true
+        database.child("users").addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.child(username).exists()) {
+                    result = false
+                }
+            }
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        })
+        return result
     }
 
     // Creates a new account
