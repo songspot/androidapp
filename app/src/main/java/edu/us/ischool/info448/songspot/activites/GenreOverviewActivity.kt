@@ -12,6 +12,7 @@ import edu.us.ischool.info448.songspot.R
 import android.widget.*
 import android.view.animation.AnimationUtils
 import edu.us.ischool.info448.songspot.QuestionActivity
+import edu.us.ischool.info448.songspot.api.App
 
 /** Shows an overview of a selected genre, including album art, a title, description, and button to start the quiz activity. **/
 class GenreOverviewActivity : AppCompatActivity() {
@@ -28,6 +29,7 @@ class GenreOverviewActivity : AppCompatActivity() {
         val genreName = intent.getStringExtra("GENRE_NAME")
 
         genreLabel.text = genreName
+        App.sharedInstance.category = genreName
         setGenreImage(genreName, genreAlbumArt)
         setGenreDescription(genreName, genreDescription)
 

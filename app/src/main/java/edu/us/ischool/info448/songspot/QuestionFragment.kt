@@ -26,7 +26,7 @@ class QuestionFragment : Fragment() {
     private var questionsCount: Int? = null
     private var questionNumber: Int? = null
     private var secondsLeft: Int = 11
-    private var readySecondsLeft: Int = 12
+    private var readySecondsLeft: Int = 5
     private var listener: OnNextQuestionListener? = null
     private var correctButton: Button? = null
     private var points: Int? = null

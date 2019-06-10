@@ -16,6 +16,7 @@ class App: Application() {
     val clientSecret = "ccfa3f280483413eb9d2fad4abebf1cc"
 
     lateinit var username: String
+    lateinit var category: String
 
     override fun onCreate() {
         super.onCreate()

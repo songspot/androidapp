@@ -4,9 +4,9 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import edu.us.ischool.info448.songspot.activites.GenrePickerActivity
+import edu.us.ischool.info448.songspot.api.App
 
 class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionListener {
 
@@ -32,8 +32,24 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
             }
         } else {
             val database: DatabaseReference = FirebaseDatabase.getInstance().reference
-            val user = User("getusername", points, "Indie")
-            database.child("scores").child("genres").child("get_topic").child("username").setValue(user)
+            val category = App.sharedInstance.category
+            val currUser = App.sharedInstance.username
+
+            var currPoints: Long = -1
+            database.child("scores").child("genres").addListenerForSingleValueEvent(object: ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.child(category).child(currUser).exists()) {
+                        currPoints = dataSnapshot.child(category).child(currUser).child("score").value as Long
+                    }
+                }
+                override fun onCancelled(p0: DatabaseError) {
+                }
+            })
+
+            if (points > currPoints) {
+                val user = User(currUser, points, category)
+                database.child("scores").child("genres").child(category).child(currUser).setValue(user)
+            }
 
             val intent = Intent(baseContext, GenrePickerActivity::class.java)
             startActivity(intent)
