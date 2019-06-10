@@ -34,10 +34,9 @@ class GenrePickerAdapter(private val genreList: Array<String>) :
                 //genresView.visibility = View.INVISIBLE
                 //loginButton.visibility = View.VISIBLE
 
-                i.putExtra("GENRE_NAME", genreName)
+                App.sharedInstance.selectedGenre = genreName
 
                 App.sharedInstance.songRepository.fetchCategorySongs(genreName) {
-                    println("SUCCESSFULLY FETCHED SONGS")
                     context.startActivity(i)
                 }
             }

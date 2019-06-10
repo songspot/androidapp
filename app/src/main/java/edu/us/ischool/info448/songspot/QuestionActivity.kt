@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.google.firebase.database.*
 import edu.us.ischool.info448.songspot.activites.GenrePickerActivity
+import edu.us.ischool.info448.songspot.activites.ResultsActivity
 import edu.us.ischool.info448.songspot.api.App
 
 class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionListener {
@@ -15,7 +16,7 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
         setContentView(R.layout.activity_question)
 
         // by default starts Question Fragment
-        val questionFragment = QuestionFragment.newInstance(1,2, 0)
+        val questionFragment = QuestionFragment.newInstance(1,5, 0)
         supportFragmentManager.beginTransaction().run {
             add(R.id.fragment_container, questionFragment, "QUESTION_FRAGMENT")
             commit()
@@ -32,7 +33,7 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
             }
         } else {
             val database: DatabaseReference = FirebaseDatabase.getInstance().reference
-            val category = App.sharedInstance.category
+            val category = App.sharedInstance.selectedGenre
             val currUser = App.sharedInstance.username
 
             var currPoints: Long = -1
@@ -51,7 +52,9 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
                 database.child("scores").child("genres").child(category).child(currUser).setValue(user)
             }
 
-            val intent = Intent(baseContext, GenrePickerActivity::class.java)
+            val intent = Intent(baseContext, ResultsActivity::class.java)
+            intent.putExtra("SCORE", points)
+
             startActivity(intent)
         }
     }

@@ -26,10 +26,9 @@ class GenreOverviewActivity : AppCompatActivity() {
         val genreLabel = findViewById<TextView>(R.id.genre_overview_label)
         val genreAlbumArt = findViewById<ImageView>(R.id.genre_album_art)
         val genreDescription = findViewById<TextView>(R.id.genre_description)
-        val genreName = intent.getStringExtra("GENRE_NAME")
+        val genreName = App.sharedInstance.selectedGenre
 
         genreLabel.text = genreName
-        App.sharedInstance.category = genreName
         setGenreImage(genreName, genreAlbumArt)
         setGenreDescription(genreName, genreDescription)
 

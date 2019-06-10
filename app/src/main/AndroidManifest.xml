@@ -12,6 +12,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity
+                android:name=".activites.ResultsActivity"
+                android:label="@string/title_activity_results"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name=".activites.LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -30,12 +35,15 @@
                 android:name=".activites.GenrePickerActivity"
                 android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         </activity>
-        <activity android:name=".activites.GenreOverviewActivity"
-                  android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <activity
+                android:name=".activites.GenreOverviewActivity"
+                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         </activity>
-        <activity android:name=".activites.LeaderboardActivity"
-                  android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <activity
+                android:name=".activites.LeaderboardActivity"
+                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         </activity>
+
         <meta-data
                 android:name="preloaded_fonts"
                 android:resource="@array/preloaded_fonts"/>

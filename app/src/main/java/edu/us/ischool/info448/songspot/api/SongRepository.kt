@@ -1,6 +1,4 @@
 package edu.us.ischool.info448.songspot.api
-import android.util.Log
-import com.adamratzman.spotify.SpotifyClientAPI
 import com.adamratzman.spotify.SpotifyAPI
 import com.adamratzman.spotify.spotifyApi
 import edu.us.ischool.info448.songspot.models.Song
@@ -17,6 +15,7 @@ class SongRepository {
     )
 
     private lateinit var accessToken: String
+
     private lateinit var api: SpotifyAPI
 
     private var songs = arrayListOf<Song>()
@@ -71,5 +70,9 @@ class SongRepository {
             }
 
         }.buildCredentialed()
+    }
+
+    fun getAccessToken(): String? {
+        return accessToken
     }
 }
