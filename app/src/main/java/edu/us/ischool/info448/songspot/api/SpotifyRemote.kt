@@ -20,24 +20,6 @@ class SpotifyRemote {
     }
 
     fun playSong(uri: String) {
-        val connectionParams = ConnectionParams.Builder(App.sharedInstance.clientId)
-            .setRedirectUri(App.sharedInstance.redirectUri)
-            .showAuthView(true)
-            .build()
-
-        SpotifyAppRemote.connect(this.context, connectionParams, object : Connector.ConnectionListener {
-            override fun onConnected(appRemote: SpotifyAppRemote) {
-                spotifyAppRemote = appRemote
-                Log.d("SONG_SPOT", "Connected! Yay!")
-                // Now you can start interacting with App Remote
-
-            }
-
-            override fun onFailure(throwable: Throwable) {
-                Log.e("MainActivity", throwable.message, throwable)
-                // Something went wrong when attempting to connect! Handle errors here
-            }
-        })
         App.sharedInstance.spotifyRemote.spotifyAppRemote?.let {
             Log.d("SONG_SPOT", "Trying to play song")
 
