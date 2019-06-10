@@ -48,11 +48,13 @@ class GenrePickerActivity : AppCompatActivity() {
         }
         recyclerView.addItemDecoration(GridSpacingItemDecoration(2, 48))
 
+
         // We need to authenicate with their spotify account
         val request = AuthenticationRequest.Builder(App.sharedInstance.clientId, AuthenticationResponse.Type.TOKEN, App.sharedInstance.redirectUri)
             .setScopes(arrayOf("user-read-private", "playlist-read", "playlist-read-private", "streaming"))
             .build()
         AuthenticationClient.openLoginActivity(this, requestCode, request)
+
     }
 
     /** For dynamically adjusting the margins/spacing between items in the RecyclerView. **/
