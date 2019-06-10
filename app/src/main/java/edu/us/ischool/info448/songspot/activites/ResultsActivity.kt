@@ -2,14 +2,11 @@ package edu.us.ischool.info448.songspot.activites
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
 import edu.us.ischool.info448.songspot.R
 import edu.us.ischool.info448.songspot.api.App
-
-import kotlinx.android.synthetic.main.activity_results.*
 
 class ResultsActivity : AppCompatActivity() {
 
