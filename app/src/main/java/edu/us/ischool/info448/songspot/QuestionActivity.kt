@@ -36,21 +36,24 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
             val category = App.sharedInstance.selectedGenre
             val currUser = App.sharedInstance.username
 
-            var currPoints: Long = -1
             database.child("scores").child("genres").addListenerForSingleValueEvent(object: ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.child(category).child(currUser).exists()) {
-                        currPoints = dataSnapshot.child(category).child(currUser).child("score").value as Long
+                        val currPoints = dataSnapshot.child(category).child(currUser).child("score").value as Long
+
+                        if (points > currPoints) {
+                            val user = User(currUser, points, category)
+                            database.child("scores").child("genres").child(category).child(currUser).setValue(user)
+                        }
+
+                    } else {
+                        val user = User(currUser, points, category)
+                        database.child("scores").child("genres").child(category).child(currUser).setValue(user)
                     }
                 }
                 override fun onCancelled(p0: DatabaseError) {
                 }
             })
-
-            if (points > currPoints) {
-                val user = User(currUser, points, category)
-                database.child("scores").child("genres").child(category).child(currUser).setValue(user)
-            }
 
             val intent = Intent(baseContext, ResultsActivity::class.java)
             intent.putExtra("SCORE", points)
