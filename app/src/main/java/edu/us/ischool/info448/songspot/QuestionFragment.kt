@@ -197,8 +197,9 @@ class QuestionFragment : Fragment() {
     private fun setButtons(view: View): String {
         val songs:Array<Song> = App.sharedInstance.songRepository.getQuestionSongs()
         Log.d("debug", songs.toString())
-        val correctTitle = songs.random().title
-        Log.d("debugging", correctTitle)
+        val correctSong = songs.random()
+        val correctLabel = correctSong.title + " by " + correctSong.artist
+        Log.d("debugging", correctLabel)
         var takenOptions: Set<Int> = setOf(5)
         var randButtonIndex = 5
         var songURI = ""
@@ -211,10 +212,9 @@ class QuestionFragment : Fragment() {
             val targetID = resources.getIdentifier("answer" + randButtonIndex, "id", "edu.us.ischool.info448.songspot")
             Log.d("debugging", randButtonIndex.toString())
             val targetButton = view.findViewById<Button>(targetID)
-            targetButton.text = songs[i].title
-            Log.d("debugging", songs[i].title)
+            targetButton.text = songs[i].title + " - " + songs[i].artist
             // sets correct answer
-            if (songs[i].title.equals(correctTitle)) {
+            if (songs[i].title.equals(correctSong.title)) {
                 correctButton = targetButton
                 songURI = songs[i].spotifyUri
             }
