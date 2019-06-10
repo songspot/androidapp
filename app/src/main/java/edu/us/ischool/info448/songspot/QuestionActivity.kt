@@ -23,6 +23,11 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        App.sharedInstance.spotifyRemote.disconnect()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         App.sharedInstance.spotifyRemote.disconnect()
