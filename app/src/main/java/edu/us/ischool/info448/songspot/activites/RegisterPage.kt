@@ -36,7 +36,6 @@ class RegisterPage : AppCompatActivity() {
         }
     }
 
-
     private fun validForm(username: String, password: String) : Boolean {
         if (username.isEmpty() || password.isEmpty()) {
             return false

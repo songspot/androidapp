@@ -43,4 +43,9 @@ class ResultsActivity : AppCompatActivity() {
         val rootView = genreLabel.rootView
         rootView.setBackgroundColor(resources.getColor(android.R.color.background_dark))
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        App.sharedInstance.spotifyRemote.disconnect()
+    }
 }

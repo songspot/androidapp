@@ -23,6 +23,11 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        App.sharedInstance.spotifyRemote.disconnect()
+    }
+
     override fun onNextQuestion(questionNumber: Int, questionsCount:Int, points: Int) {
         if (questionNumber < (questionsCount + 1)) {
             Log.d("debugging", "Reached redirect!")
@@ -35,6 +40,7 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
             val database: DatabaseReference = FirebaseDatabase.getInstance().reference
             val category = App.sharedInstance.selectedGenre
             val currUser = App.sharedInstance.username
+
 
             database.child("scores").child("genres").addListenerForSingleValueEvent(object: ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {

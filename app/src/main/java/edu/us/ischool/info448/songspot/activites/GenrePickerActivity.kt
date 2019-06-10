@@ -57,6 +57,11 @@ class GenrePickerActivity : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        App.sharedInstance.spotifyRemote.disconnect()
+    }
+
     /** For dynamically adjusting the margins/spacing between items in the RecyclerView. **/
     inner class GridSpacingItemDecoration(private val spanCount: Int, private val spacing: Int) : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
