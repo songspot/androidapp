@@ -31,8 +31,35 @@ class LeaderboardActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().reference
         val leaderboardListener = object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val users = snapshot.getValue()
+                var listOfUsers: MutableSet<User> = mutableSetOf()
                 // Sort users by score here.
+                val genres: Iterable<DataSnapshot> = snapshot.child("scores").child("genres").children
+                genres.forEach {
+                    val users: Iterable<DataSnapshot> = it.children
+                    users.forEach {
+                        val category = it.child("category").value as String
+                        val username = it.child("username").value as String
+                        val score = it.child("score").value as Long
+                        listOfUsers.add(User(username, score, category))
+                    }
+                }
+                val sortedList = listOfUsers.sorted().reversed()
+                val scoresList = findViewById<ListView>(R.id.scores_list)
+                val topNscores = mutableListOf<Int>()
+                val topNgenres = mutableListOf<String>()
+                val topNusers = mutableListOf<String>()
+
+                for (i in 0..10) {
+                    if (i >= sortedList.size) {
+                        break
+                    }
+                    topNscores.add(sortedList.get(i).score.toInt())
+                    topNgenres.add(sortedList.get(i).category)
+                    topNusers.add(sortedList.get(i).username)
+                }
+
+                val listAdapter = ScoresAdapter(applicationContext, topNgenres.toTypedArray(), topNscores.toTypedArray(), topNusers.toTypedArray())
+                scoresList.adapter = listAdapter
             }
 
             override fun onCancelled(p0: DatabaseError) {}
@@ -45,13 +72,9 @@ class LeaderboardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val scoresList = findViewById<ListView>(R.id.scores_list)
-
-        val listAdapter = ScoresAdapter(this, genreList, arrayOf(20, 110, 70, 47, 83, 92))
-        scoresList.adapter = listAdapter
     }
 
-    class ScoresAdapter(context: Context, private val genreList: Array<String>, private val scoreList: Array<Int>) : BaseAdapter() {
+    class ScoresAdapter(context: Context, private val genreList: Array<String>, private val scoreList: Array<Int>, private val userList: Array<String>) : BaseAdapter() {
         private val inflater : LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         override fun getCount(): Int { return genreList.size }
@@ -66,11 +89,20 @@ class LeaderboardActivity : AppCompatActivity() {
             val genreView = rowView.findViewById<TextView>(R.id.leaderboard_item_genre)
             val scoreView = rowView.findViewById<TextView>(R.id.leaderboard_item_score)
 
-            usernameView.text = (p0 + 1).toString() + ". username"
+            //usernameView.text = (p0 + 1).toString() + ". username"
+            usernameView.text = (p0 + 1).toString() + ". " + userList.get(p0)
             genreView.text = genreList[p0]
             scoreView.text = scoreList[p0].toString()
 
             return rowView
+        }
+    }
+
+    data class User(var username: String, var score: Long, var category: String): Comparable<User> {
+
+        override fun compareTo(other: User): Int {
+            val diff = score - other.score
+            return diff.toInt()
         }
     }
 }
