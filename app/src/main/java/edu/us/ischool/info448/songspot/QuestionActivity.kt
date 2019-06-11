@@ -21,6 +21,8 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
             add(R.id.fragment_container, questionFragment, "QUESTION_FRAGMENT")
             commit()
         }
+
+        App.sharedInstance.spotifyRemote.connect {}
     }
 
     override fun onPause() {
