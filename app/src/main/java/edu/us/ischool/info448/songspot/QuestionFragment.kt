@@ -1,6 +1,7 @@
 package edu.us.ischool.info448.songspot
 
 import android.content.Context
+import android.content.Intent
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -17,9 +18,11 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Interpolator
 import android.widget.Button
+import edu.us.ischool.info448.songspot.activites.ResultsActivity
 
 import edu.us.ischool.info448.songspot.api.App
 import edu.us.ischool.info448.songspot.models.Song
+import java.lang.Exception
 
 
 class QuestionFragment : Fragment() {
@@ -30,6 +33,9 @@ class QuestionFragment : Fragment() {
     private var listener: OnNextQuestionListener? = null
     private var correctButton: Button? = null
     private var points: Int? = null
+    private var wasPaused = false
+    private val questionTimer = Timer()
+    private val readyTimer = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,11 +64,9 @@ class QuestionFragment : Fragment() {
 
         // reference to timer display
         val timerDisplay = view.findViewById<TextView>(R.id.timer)
-        val timer = Timer()
-        val readyTimer = Timer()
+
         readyTimer.schedule(object : TimerTask() {
             override fun run() {
-
                 // start "Ready Period" Timer
                 activity.runOnUiThread(Runnable {
                     // tasks to be done every 1000 milliseconds
@@ -86,7 +90,7 @@ class QuestionFragment : Fragment() {
                         readyTimer.cancel()
 
                         // starts question timer as soon as "Ready Period" is over
-                        timer.schedule(object : TimerTask() {
+                        questionTimer.schedule(object : TimerTask() {
                             override fun run() {
                                 activity.runOnUiThread(Runnable {
                                     // tasks to be done every 1000 milliseconds
@@ -95,7 +99,7 @@ class QuestionFragment : Fragment() {
                                     if (secondsLeft == 0) {
                                         // tasks to be done if time runs out
                                         disableButtons(answer1, answer2, answer3, answer4)
-                                        timer.cancel()
+                                        questionTimer.cancel()
                                         activateBlinking(answer1, false)
                                         activateBlinking(answer2, false)
                                         activateBlinking(answer3, false)
@@ -117,7 +121,8 @@ class QuestionFragment : Fragment() {
 
         // sets onclicklisteners for all buttons
         answer1.setOnClickListener {
-            timer.cancel()
+            readyTimer.cancel()
+            questionTimer.cancel()
             disableButtons(answer1, answer2, answer3, answer4)
             activateBlinking(answer1, true)
         }
@@ -125,17 +130,20 @@ class QuestionFragment : Fragment() {
         answer2.setOnClickListener {
             activateBlinking(answer2, true)
             disableButtons(answer1, answer2, answer3, answer4)
-            timer.cancel()
+            questionTimer.cancel()
+            readyTimer.cancel()
         }
         answer3.setOnClickListener {
             activateBlinking(answer3, true)
             disableButtons(answer1, answer2, answer3, answer4)
-            timer.cancel()
+            questionTimer.cancel()
+            readyTimer.cancel()
         }
         answer4.setOnClickListener {
             activateBlinking(answer4, true)
             disableButtons(answer1, answer2, answer3, answer4)
-            timer.cancel()
+            questionTimer.cancel()
+            readyTimer.cancel()
         }
         return view
     }
@@ -223,6 +231,22 @@ class QuestionFragment : Fragment() {
         return songURI
     }
 
+    override fun onPause() {
+        super.onPause()
+        wasPaused = true
+        questionTimer.cancel()
+        readyTimer.cancel()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (wasPaused && listener != null) {
+            Log.d("debugging", "listener is not null!")
+            questionNumber = questionsCount!! + 1
+            listener!!.onNextQuestion(questionNumber!!, questionsCount!!, points!!)
+        }
+    }
+
     // helper function to calculate score based on seconds left
     // can be changed later for different scoring techniques
     private fun setPoints(): Int {
@@ -237,6 +261,17 @@ class QuestionFragment : Fragment() {
             throw RuntimeException(context.toString() + " must implement OnNextQuestionListener")
         }
     }
+
+
+
+
+
+
+
+
+
+
+
 
     override fun onDetach() {
         super.onDetach()

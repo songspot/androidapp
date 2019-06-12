@@ -35,6 +35,7 @@ class QuestionActivity : AppCompatActivity(), QuestionFragment.OnNextQuestionLis
         App.sharedInstance.spotifyRemote.disconnect()
     }
 
+
     override fun onNextQuestion(questionNumber: Int, questionsCount:Int, points: Int) {
         if (questionNumber < (questionsCount + 1)) {
             Log.d("debugging", "Reached redirect!")
